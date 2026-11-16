@@ -1,5 +1,4 @@
-if game.PlaceId == 17516596118 then
-        
+
     local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()
         
     T9ou:CreateWindow({
