@@ -1,7 +1,7 @@
 if game.PlaceId == 17516596118 then
     do
-        local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()
-    
+        local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()    
+        
         T9ou:CreateWindow({
             Title = "T9ou hub",
             Icon = "flame"
@@ -21,5 +21,6 @@ if game.PlaceId == 17516596118 then
         
         local Setting = T9ou:Tab("Settings", "settings")
     
-    T9ou:Notify("Loaded", "Hypershot script loaded!")
+        T9ou:Notify("Loaded", "Hypershot script loaded!")
+    end
 end
