@@ -1,4 +1,4 @@
-if game.PlaceId == 17516596118 then
+if game.GameId == 17516596118 then
     do
         
         local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()
