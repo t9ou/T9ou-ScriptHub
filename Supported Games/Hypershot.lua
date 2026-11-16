@@ -7,6 +7,8 @@ local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9o
 
     T9ou:SetFooter("Hypershot")
 
+    T9ou:Notify("Loaded", "Hypershot script loaded!")
+
     local Aimbot = T9ou:Tab("Aimbot", "crosshair")
 
     local Silentaim = T9ou:Tab("Silent Aim", "target")
@@ -19,4 +21,3 @@ local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9o
 
     local Setting = T9ou:Tab("Settings", "settings")
 
-    T9ou:Notify("Loaded", "Hypershot script loaded!")
