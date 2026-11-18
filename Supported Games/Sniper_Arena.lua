@@ -10,6 +10,13 @@ T9ou:SetFooter("Sniper Arena")
 T9ou:Notify("Loaded", "Sniper Arena script loaded!")
 
 local Aimbot = T9ou:Tab("Aimbot", "crosshair")
+    T9ou:Toggle(Aimbot, {
+    Name = "Toggle Aimbot",
+    Flag = "AimbotTrue",
+    Default = false,
+    Icon = "box",
+    Callback = function(v) end
+    })
 
 local SilentAim = T9ou:Tab("Silent Aim", "target")
 
