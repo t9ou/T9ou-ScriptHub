@@ -53,7 +53,15 @@ local SilentAim = T9ou:Tab("Silent Aim", "target")
     Callback = function(v) end
     })
 
-    
+    T9ou:Slider(SilentAim, {
+    Name = "FOV Size",
+    Flag = "FOVSize",
+    Min = 0,
+    Max = 100,
+    Default = 50,
+    Icon = "sliders",
+    Callback = function(v) end
+    })
 
 local Weapon = T9ou:Tab("Weapon", "swords")
 
