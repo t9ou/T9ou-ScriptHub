@@ -9,14 +9,14 @@ T9ou:SetFooter("Sniper Arena")
 
 T9ou:Notify("Loaded", "Sniper Arena script loaded!")
 
-local Aimbot = T9ou:Tab("Aimbot", "icon")
+local Aimbot = T9ou:Tab("Aimbot", "crosshair")
 
-local SilentAim = T9ou:Tab("Silent Aim", "icon")
+local SilentAim = T9ou:Tab("Silent Aim", "target")
 
-local Weapon = T9ou:Tab("Weapon", "icon")
+local Weapon = T9ou:Tab("Weapon", "swords")
 
-local Visual = T9ou:Tab("Visual", "icon")
+local Visual = T9ou:Tab("Visual", "eye")
 
-local SkinChanger = T9ou:Tab("Skin Changer", "icon")
+local SkinChanger = T9ou:Tab("Skin Changer", "palette")
 
-local Misc = T9ou:Tab("Misc", "icon")
+local Misc = T9ou:Tab("Misc", "settings")
