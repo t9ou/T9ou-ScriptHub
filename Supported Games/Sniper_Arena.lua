@@ -18,10 +18,26 @@ local Aimbot = T9ou:Tab("Aimbot", "crosshair")
     Callback = function(v) end
     })
 
+    T9ou:Toggle(Aimbot, {
+    Name = "Enable FOV",
+    Flag = "FOVTrue",
+    Default = false,
+    Icon = "box",
+    Callback = function(v) end
+    })
+
 local SilentAim = T9ou:Tab("Silent Aim", "target")
     T9ou:Toggle(SilentAim, {
     Name = "Enable Silent Aim",
     Flag = "SilentAimTrue",
+    Default = false,
+    Icon = "box",
+    Callback = function(v) end
+    })
+
+    T9ou:Toggle(SilentAim, {
+    Name = "Enable FOV",
+    Flag = "FOVTrue",
     Default = false,
     Icon = "box",
     Callback = function(v) end
