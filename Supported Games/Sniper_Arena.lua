@@ -6,4 +6,19 @@ T9ou:CreateWindow({
 })
 
 T9ou:SetFooter("Sniper Arena")
+
 T9ou:Notify("Loaded", "Sniper Arena script loaded!")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
+
+local Tab = T9ou:Tab("Name", "icon")
