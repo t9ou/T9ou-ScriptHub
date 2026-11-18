@@ -26,6 +26,16 @@ local Aimbot = T9ou:Tab("Aimbot", "crosshair")
     Callback = function(v) end
     })
 
+    T9ou:Slider(Aimbot, {
+    Name = "FOV Size",
+    Flag = "FOVSize",
+    Min = 0,
+    Max = 100,
+    Default = 50,
+    Icon = "sliders",
+    Callback = function(v) end
+    })
+
 local SilentAim = T9ou:Tab("Silent Aim", "target")
     T9ou:Toggle(SilentAim, {
     Name = "Enable Silent Aim",
