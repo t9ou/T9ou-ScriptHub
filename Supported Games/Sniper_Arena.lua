@@ -53,6 +53,8 @@ local SilentAim = T9ou:Tab("Silent Aim", "target")
     Callback = function(v) end
     })
 
+    
+
 local Weapon = T9ou:Tab("Weapon", "swords")
 
 local Visual = T9ou:Tab("Visual", "eye")
