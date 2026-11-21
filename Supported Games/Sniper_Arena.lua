@@ -214,20 +214,7 @@ T9ou:Toggle(Visual, {
     Flag = "ESPEnabled",
     Default = false,
     Icon = "eye",
-    Callback = function(v)
-        print("ESP modul:", ESP) -- Ezt nézd meg a konzolon!
-        if v then 
-            if ESP then
-                ESP:start() 
-                print("ESP elindult")
-            else
-                warn("Hiba: Az ESP modul nil (nem töltődött be a Githubról!)")
-            end
-        else 
-            if ESP then ESP:stop() end
-            print("ESP leállt")
-        end
-    end
+    Callback = function(v)end
 })
 
 T9ou:Toggle(Visual, {
