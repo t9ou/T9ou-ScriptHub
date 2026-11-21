@@ -23,7 +23,7 @@ T9ou:Toggle(Aimbot, {
 T9ou:Toggle(Aimbot, {
     Name = "Smooth",
     Flag = "AimbotSmooth",
-    Default = true,
+    Default = false,
     Icon = "box",
     Callback = function(v) end
 })
@@ -41,7 +41,7 @@ T9ou:Slider(Aimbot, {
 T9ou:Toggle(Aimbot, {
     Name = "Team Check",
     Flag = "AimbotTeamCheck",
-    Default = true,
+    Default = false,
     Icon = "users",
     Callback = function(v) end
 })
@@ -49,7 +49,7 @@ T9ou:Toggle(Aimbot, {
 T9ou:Toggle(Aimbot, {
     Name = "Visible Check",
     Flag = "AimbotVisibleCheck",
-    Default = true,
+    Default = false,
     Icon = "eye",
     Callback = function(v) end
 })
@@ -121,7 +121,7 @@ T9ou:Toggle(SilentAim, {
 T9ou:Toggle(SilentAim, {
     Name = "Team Check",
     Flag = "SilentTeamCheck",
-    Default = true,
+    Default = false,
     Icon = "users",
     Callback = function(v) end
 })
@@ -129,7 +129,7 @@ T9ou:Toggle(SilentAim, {
 T9ou:Toggle(SilentAim, {
     Name = "Visible Check",
     Flag = "SilentVisibleCheck",
-    Default = true,
+    Default = false,
     Icon = "eye",
     Callback = function(v) end
 })
@@ -233,7 +233,7 @@ T9ou:Toggle(Visual, {
 T9ou:Toggle(Visual, {
     Name = "Box",
     Flag = "ESP_Box",
-    Default = true,
+    Default = false,
     Icon = "square",
     Callback = function(v) end
 })
@@ -241,7 +241,7 @@ T9ou:Toggle(Visual, {
 T9ou:Toggle(Visual, {
     Name = "Name",
     Flag = "ESP_Name",
-    Default = true,
+    Default = false,
     Icon = "type",
     Callback = function(v) end
 })
@@ -249,7 +249,7 @@ T9ou:Toggle(Visual, {
 T9ou:Toggle(Visual, {
     Name = "Health Bar",
     Flag = "ESP_Health",
-    Default = true,
+    Default = false,
     Icon = "heart",
     Callback = function(v) end
 })
@@ -257,7 +257,7 @@ T9ou:Toggle(Visual, {
 T9ou:Toggle(Visual, {
     Name = "Distance",
     Flag = "ESP_Distance_Text",
-    Default = true,
+    Default = false,
     Icon = "ruler",
     Callback = function(v) end
 })
@@ -281,7 +281,7 @@ T9ou:Toggle(Visual, {
 T9ou:Toggle(Visual, {
     Name = "Team Check",
     Flag = "ESP_TeamCheck",
-    Default = true,
+    Default = false,
     Icon = "users",
     Callback = function(v) end
 })
