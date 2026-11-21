@@ -321,8 +321,6 @@ T9ou:Slider(Misc, {
     Default = 16,
     Icon = "person-standing",
     Callback = function(v)
-        local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-        if hum then hum.WalkSpeed = v end
     end
 })
 
@@ -334,8 +332,6 @@ T9ou:Slider(Misc, {
     Default = 50,
     Icon = "arrow-up",
     Callback = function(v)
-        local hum = game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-        if hum then hum.JumpPower = v end
     end
 })
 
