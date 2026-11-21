@@ -1,4 +1,5 @@
 local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()
+local ESP = getgenv().ESP
 
 T9ou:CreateWindow({
     Title = "T9ou hub",
