@@ -1279,11 +1279,19 @@ local function isTeammate(player)
 	local myChar = LocalPlayer.Character
 	local theirChar = player.Character
 	if not (myChar and theirChar) then return false end
+	
 	local myHum = myChar:FindFirstChildOfClass("Humanoid")
 	local theirHum = theirChar:FindFirstChildOfClass("Humanoid")
+	
+	-- Biztonságos ellenőrzés, mert ebben a játékban nincs TeamColor
 	if myHum and theirHum then
-		return myHum.TeamColor == theirHum.TeamColor
+		local success, myTeam = pcall(function() return myHum.TeamColor end)
+		local success2, theirTeam = pcall(function() return theirHum.TeamColor end)
+		if success and success2 and myTeam and theirTeam then
+			return myTeam == theirTeam
+		end
 	end
+	
 	return false
 end
 
