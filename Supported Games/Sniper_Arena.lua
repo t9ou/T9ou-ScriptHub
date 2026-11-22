@@ -338,7 +338,10 @@ T9ou:Toggle(Visual, {
     Flag = "ESPEnabled",
     Default = false,
     Icon = "eye",
-    Callback = function(v)end
+    Callback = function(v)
+        ESPEnabled = v
+        UpdateESP()
+    end
 })
 
 T9ou:Toggle(Visual, {
@@ -346,7 +349,10 @@ T9ou:Toggle(Visual, {
     Flag = "ESP_Box",
     Default = false,
     Icon = "square",
-    Callback = function(v) end
+    Callback = function(v) 
+        ESPBoxEnabled = v 
+        UpdateESP()
+    end
 })
 
 T9ou:Toggle(Visual, {
