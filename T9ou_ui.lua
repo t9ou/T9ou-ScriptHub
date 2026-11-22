@@ -920,8 +920,8 @@ function T9ou:ColorPicker(Tab, Config)
 		local Panel = Create("Frame", { Parent = Tab.Page, Size = UDim2.new(1, 0, 0, 0), BackgroundColor3 = Theme.BgElement, BorderSizePixel = 0, Visible = false, ClipsDescendants = true })
 		Corner(Panel, 8)
 		Create("UIStroke", { Color = Theme.Accent, Thickness = 1, Transparency = 0.5, Parent = Panel })
-		Create("UIPadding", { Parent = Panel, PaddingTop = UDim.new(0, 8), PaddingBottom = UDim.new(0, 8), PaddingLeft = UDim.new(0, 8), PaddingRight = UDim.new(0, 8) })
-		Create("UIListLayout", { Parent = Panel, Padding = UDim.new(0, 8), SortOrder = Enum.SortOrder.LayoutOrder })
+		Create("UIPadding", { Parent = Panel, PaddingTop = UDim.new(0, 12), PaddingBottom = UDim.new(0, 12), PaddingLeft = UDim.new(0, 12), PaddingRight = UDim.new(0, 12) })
+		Create("UIListLayout", { Parent = Panel, Padding = UDim.new(0, 12), SortOrder = Enum.SortOrder.LayoutOrder })
 
 		local open = false
 		local function UpdateColor(c)
@@ -932,9 +932,12 @@ function T9ou:ColorPicker(Tab, Config)
 			if Config.Callback then task.spawn(Config.Callback, T9ou.Options[Flag]) end
 		end
 
-		local HueHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1 })
-		local HueBar = Create("Frame", { Parent = HueHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 8), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0 })
-		Corner(HueBar, 4)
+		local h, s, v = currentColor:ToHSV()
+
+		-- Hue Bar (Színskála)
+		local HueHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1 })
+		local HueBar = Create("Frame", { Parent = HueHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 12), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0 })
+		Corner(HueBar, 6)
 		Create("UIGradient", { Color = ColorSequence.new{
 			ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 0, 0)),
 			ColorSequenceKeypoint.new(1/6, Color3.fromRGB(255, 255, 0)),
@@ -945,9 +948,9 @@ function T9ou:ColorPicker(Tab, Config)
 			ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 0, 0))
 		}, Rotation = 0, Parent = HueBar })
 
-		local h, s, v = currentColor:ToHSV()
-		local HueKnob = Create("Frame", { Parent = HueBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(h, 0, 0.5, 0), Size = UDim2.fromOffset(12, 16), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0 })
+		local HueKnob = Create("Frame", { Parent = HueBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(h, 0, 0.5, 0), Size = UDim2.fromOffset(14, 20), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0, ZIndex = 2 })
 		Corner(HueKnob, 4)
+		Create("UIStroke", { Color = Color3.fromRGB(0, 0, 0), Thickness = 1, Transparency = 0.5, Parent = HueKnob })
 
 		local function UpdateHue(mouseX)
 			local rel = math.clamp((mouseX - HueBar.AbsolutePosition.X) / HueBar.AbsoluteSize.X, 0, 1)
@@ -957,17 +960,29 @@ function T9ou:ColorPicker(Tab, Config)
 
 		local HueDragArea = Create("TextButton", { Parent = HueHolder, Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Text = "" })
 		local draggingHue = false
-		HueDragArea.MouseButton1Down:Connect(function() draggingHue = true; UpdateHue(UserInputService:GetMouseLocation().X) end)
-		UserInputService.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then draggingHue = false end end)
-		RunService.RenderStepped:Connect(function() if draggingHue then UpdateHue(UserInputService:GetMouseLocation().X) end end)
+		HueDragArea.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				draggingHue = true; UpdateHue(input.Position.X)
+			end
+		end)
+		HueDragArea.InputChanged:Connect(function(input)
+			if draggingHue and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+				UpdateHue(input.Position.X)
+			end
+		end)
+		HueDragArea.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then draggingHue = false end
+		end)
 
-		local SatHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1 })
-		local SatBar = Create("Frame", { Parent = SatHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 8), BackgroundColor3 = Color3.fromHSV(h, 1, 1), BorderSizePixel = 0 })
-		Corner(SatBar, 4)
+		-- Sat Bar (Telítettség)
+		local SatHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1 })
+		local SatBar = Create("Frame", { Parent = SatHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 12), BackgroundColor3 = Color3.fromHSV(h, 1, 1), BorderSizePixel = 0 })
+		Corner(SatBar, 6)
 		Create("UIGradient", { Color = ColorSequence.new(Color3.fromHSV(h, 0, v), Color3.fromHSV(h, 1, v)), Rotation = 0, Parent = SatBar })
 		
-		local SatKnob = Create("Frame", { Parent = SatBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(s, 0, 0.5, 0), Size = UDim2.fromOffset(12, 16), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0 })
+		local SatKnob = Create("Frame", { Parent = SatBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(s, 0, 0.5, 0), Size = UDim2.fromOffset(14, 20), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0, ZIndex = 2 })
 		Corner(SatKnob, 4)
+		Create("UIStroke", { Color = Color3.fromRGB(0, 0, 0), Thickness = 1, Transparency = 0.5, Parent = SatKnob })
 
 		local function UpdateSat(mouseX)
 			local rel = math.clamp((mouseX - SatBar.AbsolutePosition.X) / SatBar.AbsoluteSize.X, 0, 1)
@@ -977,17 +992,29 @@ function T9ou:ColorPicker(Tab, Config)
 
 		local SatDragArea = Create("TextButton", { Parent = SatHolder, Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Text = "" })
 		local draggingSat = false
-		SatDragArea.MouseButton1Down:Connect(function() draggingSat = true; UpdateSat(UserInputService:GetMouseLocation().X) end)
-		UserInputService.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then draggingSat = false end end)
-		RunService.RenderStepped:Connect(function() if draggingSat then UpdateSat(UserInputService:GetMouseLocation().X) end end)
+		SatDragArea.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				draggingSat = true; UpdateSat(input.Position.X)
+			end
+		end)
+		SatDragArea.InputChanged:Connect(function(input)
+			if draggingSat and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+				UpdateSat(input.Position.X)
+			end
+		end)
+		SatDragArea.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then draggingSat = false end
+		end)
 
-		local ValHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 16), BackgroundTransparency = 1 })
-		local ValBar = Create("Frame", { Parent = ValHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 8), BackgroundColor3 = Color3.fromHSV(h, s, 1), BorderSizePixel = 0 })
-		Corner(ValBar, 4)
+		-- Value Bar (Fényerő)
+		local ValHolder = Create("Frame", { Parent = Panel, Size = UDim2.new(1, 0, 0, 20), BackgroundTransparency = 1 })
+		local ValBar = Create("Frame", { Parent = ValHolder, Position = UDim2.fromOffset(0, 4), Size = UDim2.new(1, 0, 0, 12), BackgroundColor3 = Color3.fromHSV(h, s, 1), BorderSizePixel = 0 })
+		Corner(ValBar, 6)
 		Create("UIGradient", { Color = ColorSequence.new(Color3.new(0,0,0), Color3.fromHSV(h, s, 1)), Rotation = 0, Parent = ValBar })
 
-		local ValKnob = Create("Frame", { Parent = ValBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(v, 0, 0.5, 0), Size = UDim2.fromOffset(12, 16), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0 })
+		local ValKnob = Create("Frame", { Parent = ValBar, AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(v, 0, 0.5, 0), Size = UDim2.fromOffset(14, 20), BackgroundColor3 = Color3.new(1,1,1), BorderSizePixel = 0, ZIndex = 2 })
 		Corner(ValKnob, 4)
+		Create("UIStroke", { Color = Color3.fromRGB(0, 0, 0), Thickness = 1, Transparency = 0.5, Parent = ValKnob })
 
 		local function UpdateVal(mouseX)
 			local rel = math.clamp((mouseX - ValBar.AbsolutePosition.X) / ValBar.AbsoluteSize.X, 0, 1)
@@ -997,18 +1024,28 @@ function T9ou:ColorPicker(Tab, Config)
 
 		local ValDragArea = Create("TextButton", { Parent = ValHolder, Size = UDim2.new(1, 0, 1, 0), BackgroundTransparency = 1, Text = "" })
 		local draggingVal = false
-		ValDragArea.MouseButton1Down:Connect(function() draggingVal = true; UpdateVal(UserInputService:GetMouseLocation().X) end)
-		UserInputService.InputEnded:Connect(function(i) if i.UserInputType == Enum.UserInputType.MouseButton1 then draggingVal = false end end)
-		RunService.RenderStepped:Connect(function() if draggingVal then UpdateVal(UserInputService:GetMouseLocation().X) end end)
+		ValDragArea.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				draggingVal = true; UpdateVal(input.Position.X)
+			end
+		end)
+		ValDragArea.InputChanged:Connect(function(input)
+			if draggingVal and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+				UpdateVal(input.Position.X)
+			end
+		end)
+		ValDragArea.InputEnded:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then draggingVal = false end
+		end)
 
 		local function Toggle()
 			open = not open
 			Panel.Visible = open
 			if open then
-				Panel.Size = UDim2.fromOffset(0, 70)
-				TweenService:Create(Panel, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, 70)}):Play()
+				Panel.Size = UDim2.fromOffset(0, 90)
+				TweenService:Create(Panel, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, 90)}):Play()
 			else
-				TweenService:Create(Panel, TweenInfo.new(0.2), {Size = UDim2.fromOffset(0, 70)}):Play()
+				TweenService:Create(Panel, TweenInfo.new(0.2), {Size = UDim2.fromOffset(0, 90)}):Play()
 			end
 		end
 
