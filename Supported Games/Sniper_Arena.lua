@@ -111,29 +111,141 @@ T9ou:Toggle(Aimbot, {
     
 })
 
-T9ou:Slider(Aimbot, { Name = "FOV Size", Flag = "AimbotFOVSize", Min = 20, Max = 400, Default = 120, Icon = "sliders", Callback = function(v) end })
+T9ou:Slider(Aimbot, { Name = 
+    "FOV Size", 
+    Flag = "AimbotFOVSize", 
+    Min = 20, 
+    Max = 400, 
+    Default = 120, 
+    Icon = "sliders", 
+    Callback = function(v) end 
+    
+})
 
 -- ==========================================
 -- 4. SILENT AIM TAB
 -- ==========================================
 local SilentAim = T9ou:Tab("Silent Aim", "target")
-T9ou:Toggle(SilentAim, { Name = "Enable Silent Aim", Flag = "SilentEnabled", Default = false, Icon = "target", Callback = function(v) end })
-T9ou:Slider(SilentAim, { Name = "Hit Chance", Flag = "SilentHitChance", Min = 1, Max = 100, Default = 100, Icon = "percent", Callback = function(v) end })
-T9ou:Toggle(SilentAim, { Name = "Prediction", Flag = "SilentPrediction", Default = false, Icon = "activity", Callback = function(v) end })
-T9ou:Toggle(SilentAim, { Name = "Visible Check", Flag = "SilentVisibleCheck", Default = false, Icon = "eye", Callback = function(v) end })
-T9ou:Dropdown(SilentAim, { Name = "Target Part", Flag = "SilentPart", Options = {"Head", "UpperTorso", "HumanoidRootPart"}, Default = "Head", Icon = "target", Callback = function(v) end })
-T9ou:Toggle(SilentAim, { Name = "Show FOV", Flag = "SilentFOV", Default = false, Icon = "circle", Callback = function(v) end })
-T9ou:Slider(SilentAim, { Name = "FOV Size", Flag = "SilentFOVSize", Min = 20, Max = 400, Default = 150, Icon = "sliders", Callback = function(v) end })
+
+T9ou:Toggle(SilentAim, { 
+    Name = "Enable Silent Aim", 
+    Flag = "SilentEnabled", 
+    Default = false, 
+    Icon = "target", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Slider(SilentAim, { 
+    Name = "Hit Chance", 
+    Flag = "SilentHitChance", 
+    Min = 1, 
+    Max = 100, 
+    Default = 100, 
+    Icon = "percent", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(SilentAim, { 
+    Name = "Prediction", 
+    Flag = "SilentPrediction", 
+    Default = false, 
+    Icon = "activity", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(SilentAim, { 
+    Name = "Visible Check", 
+    Flag = "SilentVisibleCheck", 
+    Default = false, 
+    Icon = "eye", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Dropdown(SilentAim, { 
+    Name = "Target Part", 
+    Flag = "SilentPart", 
+    Options = {"Head", "UpperTorso", "HumanoidRootPart"}, 
+    Default = "Head", 
+    Icon = "target", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(SilentAim, { 
+    Name = "Show FOV", 
+    Flag = "SilentFOV", 
+    Default = false, 
+    Icon = "circle", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Slider(SilentAim, { 
+    Name = "FOV Size", 
+    Flag = "SilentFOVSize", 
+    Min = 20, 
+    Max = 400, 
+    Default = 150, 
+    Icon = "sliders", 
+    Callback = function(v) end 
+    
+})
 
 -- ==========================================
 -- 5. WEAPON TAB
 -- ==========================================
 local Weapon = T9ou:Tab("Weapon", "swords")
-T9ou:Toggle(Weapon, { Name = "No Recoil", Flag = "NoRecoil", Default = false, Icon = "crosshair", Callback = function(v) end })
-T9ou:Toggle(Weapon, { Name = "No Spread", Flag = "NoSpread", Default = false, Icon = "target", Callback = function(v) end })
-T9ou:Toggle(Weapon, { Name = "Infinite Ammo", Flag = "InfAmmo", Default = false, Icon = "box", Callback = function(v) end })
-T9ou:Toggle(Weapon, { Name = "Rapid Fire", Flag = "RapidFire", Default = false, Icon = "zap", Callback = function(v) end })
-T9ou:Slider(Weapon, { Name = "Damage Multiplier", Flag = "DamageMult", Min = 1, Max = 10, Default = 1, Icon = "sliders", Callback = function(v) end })
+
+T9ou:Toggle(Weapon, { 
+    Name = "No Recoil", 
+    Flag = "NoRecoil", 
+    Default = false, 
+    Icon = "crosshair", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(Weapon, { 
+    Name = "No Spread", 
+    Flag = "NoSpread", 
+    Default = false, 
+    Icon = "target", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(Weapon, { 
+    Name = "Infinite Ammo", 
+    Flag = "InfAmmo", 
+    Default = false, 
+    Icon = "box", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(Weapon, { 
+    Name = "Rapid Fire", 
+    Flag = "RapidFire", 
+    Default = false, 
+    Icon = "zap", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Slider(Weapon, { 
+    Name = "Damage Multiplier", 
+    Flag = "DamageMult", 
+    Min = 1, 
+    Max = 10, 
+    Default = 1, 
+    Icon = "sliders", 
+    Callback = function(v) end 
+    
+})
 
 -- ==========================================
 -- 6. ESP LOGIKA ÉS TÁROLÓK
@@ -387,29 +499,131 @@ end)
 -- ==========================================
 local Visual = T9ou:Tab("Visual", "eye")
 
-T9ou:Toggle(Visual, { Name = "Enable ESP", Flag = "ESPEnabled", Default = false, Icon = "eye", Callback = function(v) ESPEnabled = v end })
-T9ou:Toggle(Visual, { Name = "Box", Flag = "ESP_Box", Default = false, Icon = "square", Callback = function(v) ESPBoxEnabled = v end })
-T9ou:Toggle(Visual, { Name = "Name", Flag = "ESP_Name", Default = false, Icon = "type", Callback = function(v) ESPNameEnabled = v end })
-T9ou:Toggle(Visual, { Name = "Distance", Flag = "ESP_Distance_Text", Default = false, Icon = "ruler", Callback = function(v) ESPDistanceEnabled = v end })
-T9ou:Toggle(Visual, { Name = "Skeleton", Flag = "ESP_Skeleton", Default = false, Icon = "bone", Callback = function(v) ESPSkeletonEnabled = v end })
-T9ou:Toggle(Visual, { Name = "Tracer", Flag = "ESP_Tracer", Default = false, Icon = "minus", Callback = function(v) ESPTracerEnabled = v end })
+T9ou:Toggle(Visual, { 
+    Name = "Enable ESP", 
+    Flag = "ESPEnabled", 
+    Default = false, 
+    Icon = "eye", 
+    Callback = function(v) 
+        ESPEnabled = v 
+    end 
+})
+
+T9ou:Toggle(Visual, { 
+    Name = "Box", 
+    Flag = "ESP_Box", 
+    Default = false, 
+    Icon = "square", 
+    Callback = function(v) 
+        ESPBoxEnabled = v 
+    end 
+})
+
+T9ou:Toggle(Visual, { 
+    Name = "Name", 
+    Flag = "ESP_Name", 
+    Default = false, 
+    Icon = "type", 
+    Callback = function(v) 
+        ESPNameEnabled = v 
+    end 
+})
+
+T9ou:Toggle(Visual, { 
+    Name = "Distance", 
+    Flag = "ESP_Distance_Text", 
+    Default = false, 
+    Icon = "ruler", 
+    Callback = function(v) 
+        ESPDistanceEnabled = v 
+    end 
+})
+
+T9ou:Toggle(Visual, { 
+    Name = "Skeleton", 
+    Flag = "ESP_Skeleton", 
+    Default = false, 
+    Icon = "bone", 
+    Callback = function(v) 
+        ESPSkeletonEnabled = v 
+    end 
+})
+
+T9ou:Toggle(Visual, { 
+    Name = "Tracer", 
+    Flag = "ESP_Tracer", 
+    Default = false, 
+    Icon = "minus", 
+    Callback = function(v) 
+        ESPTracerEnabled = v 
+    end 
+})
+
 T9ou:Dropdown(Visual, { 
     Name = "Tracer Origin", 
     Flag = "ESP_TracerOrigin", 
     Options = {"Bottom", "Center", "Top"}, 
     Default = "Bottom", 
     Icon = "map-pin", 
-    Callback = function(v) ESPTracerPosition = v end 
+    Callback = function(v) 
+        ESPTracerPosition = v 
+    end 
 })
-T9ou:ColorPicker(Visual, { Name = "ESP Color", Flag = "ESP_Color", Default = Color3.fromRGB(255, 85, 120), Icon = "palette", Callback = function(c) ESPColor = Color3.new(c.R, c.G, c.B) end })
-T9ou:Slider(Visual, { Name = "Max Distance", Flag = "ESP_Distance", Min = 100, Max = 3000, Default = 1500, Icon = "sliders", Callback = function(v) end })
+
+T9ou:ColorPicker(Visual, { 
+    Name = "ESP Color", 
+    Flag = "ESP_Color", 
+    Default = Color3.fromRGB(255, 85, 120), 
+    Icon = "palette", 
+    Callback = function(c) 
+        ESPColor = Color3.new(c.R, c.G, c.B) 
+    end 
+})
 
 -- ==========================================
 -- 9. SKIN CHANGER TAB
 -- ==========================================
 local SkinChanger = T9ou:Tab("Skin Changer", "palette")
-T9ou:Dropdown(SkinChanger, { Name = "Skin", Flag = "SelectedSkin", Options = {"Default", "Gold", "Diamond", "Galaxy", "Neon"}, Default = "Default", Icon = "palette", Callback = function(v) end })
-T9ou:Button(SkinChanger, { Name = "Apply Skin", Icon = "check", Callback = function() end })
+
+T9ou:Dropdown(SkinChanger, { 
+    Name = "Sniper Skin", 
+    Flag = "SelectedSkin", 
+    Options = {
+        "Default", 
+        "Gold", 
+        "Diamond", 
+        "Galaxy", 
+        "Neon"}, 
+    Default = "Default", 
+    Icon = "palette", 
+    Callback = function(v) end 
+})
+
+T9ou:Button(SkinChanger, { 
+    Name = "Apply Sniper Skin", 
+    Icon = "check", 
+    Callback = function() end 
+})
+
+T9ou:Dropdown(SkinChanger, { 
+    Name = "Knife Skin", 
+    Flag = "SelectedSkin", 
+    Options = {
+        "Default", 
+        "Gold", 
+        "Diamond", 
+        "Galaxy", 
+        "Neon"}, 
+    Default = "Default", 
+    Icon = "palette", 
+    Callback = function(v) end 
+})
+
+T9ou:Button(SkinChanger, { 
+    Name = "Apply Kife Skin", 
+    Icon = "check", 
+    Callback = function() end 
+})
 
 -- ==========================================
 -- 10. MISC TAB
@@ -424,11 +638,7 @@ T9ou:Slider(Misc, {
     Default = 16, 
     Icon = "person-standing", 
     Callback = function(v) 
-        if type(v) == "number" then
-            local char = LocalPlayer.Character
-            local hum = char and char:FindFirstChildOfClass("Humanoid")
-            if hum then hum.WalkSpeed = v end
-        end
+
     end 
 })
 
@@ -440,14 +650,30 @@ T9ou:Slider(Misc, {
     Default = 50, 
     Icon = "arrow-up", 
     Callback = function(v) 
-        if type(v) == "number" then
-            local char = LocalPlayer.Character
-            local hum = char and char:FindFirstChildOfClass("Humanoid")
-            if hum then hum.JumpPower = v end
-        end
+
     end 
 })
 
-T9ou:Toggle(Misc, { Name = "Fly", Flag = "Fly", Default = false, Icon = "plane", Callback = function(v) end })
-T9ou:Toggle(Misc, { Name = "Noclip", Flag = "Noclip", Default = false, Icon = "ghost", Callback = function(v) end })
-T9ou:Toggle(Misc, { Name = "Infinite Jump", Flag = "InfJump", Default = false, Icon = "arrow-up-circle", Callback = function(v) end })
+T9ou:Toggle(Misc, { 
+    Name = "Fly", 
+    Flag = "Fly", 
+    Default = false, 
+    Icon = "plane", 
+    Callback = function(v) end 
+})
+
+T9ou:Toggle(Misc, { 
+    Name = "Noclip", 
+    Flag = "Noclip", 
+    Default = false, 
+    Icon = "ghost", 
+    Callback = function(v) end 
+})
+
+T9ou:Toggle(Misc, { 
+    Name = "Infinite Jump", 
+    Flag = "InfJump", 
+    Default = false, 
+    Icon = "arrow-up-circle", 
+    Callback = function(v) end 
+})
