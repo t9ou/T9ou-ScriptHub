@@ -383,14 +383,6 @@ T9ou:Toggle(Visual, {
 })
 
 T9ou:Toggle(Visual, {
-    Name = "Health Bar",
-    Flag = "ESP_Health",
-    Default = false,
-    Icon = "heart",
-    Callback = function(v) end
-})
-
-T9ou:Toggle(Visual, {
     Name = "Distance",
     Flag = "ESP_Distance_Text",
     Default = false,
