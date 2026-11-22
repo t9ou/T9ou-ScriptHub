@@ -51,7 +51,6 @@ T9ou:Toggle(Aimbot, {
     Default = false, 
     Icon = "crosshair", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(Aimbot, { 
@@ -60,7 +59,6 @@ T9ou:Toggle(Aimbot, {
     Default = false, 
     Icon = "box", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Slider(Aimbot, { 
@@ -71,7 +69,6 @@ T9ou:Slider(Aimbot, {
     Default = 8, 
     Icon = "sliders", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(Aimbot, { 
@@ -80,7 +77,6 @@ T9ou:Toggle(Aimbot, {
     Default = false, 
     Icon = "eye", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Dropdown(Aimbot, { 
@@ -90,7 +86,6 @@ T9ou:Dropdown(Aimbot, {
     Default = "Head", 
     Icon = "target", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Keybind(Aimbot, { 
@@ -99,7 +94,6 @@ T9ou:Keybind(Aimbot, {
     Default = Enum.KeyCode.E, 
     Icon = "keyboard", 
     Callback = function(k) end 
-    
 })
 
 T9ou:Toggle(Aimbot, { 
@@ -108,18 +102,16 @@ T9ou:Toggle(Aimbot, {
     Default = false, 
     Icon = "circle", 
     Callback = function(v) end 
-    
 })
 
-T9ou:Slider(Aimbot, { Name = 
-    "FOV Size", 
+T9ou:Slider(Aimbot, { 
+    Name = "FOV Size", 
     Flag = "AimbotFOVSize", 
     Min = 20, 
     Max = 400, 
     Default = 120, 
     Icon = "sliders", 
     Callback = function(v) end 
-    
 })
 
 -- ==========================================
@@ -133,7 +125,6 @@ T9ou:Toggle(SilentAim, {
     Default = false, 
     Icon = "target", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Slider(SilentAim, { 
@@ -144,7 +135,6 @@ T9ou:Slider(SilentAim, {
     Default = 100, 
     Icon = "percent", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(SilentAim, { 
@@ -153,7 +143,6 @@ T9ou:Toggle(SilentAim, {
     Default = false, 
     Icon = "activity", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(SilentAim, { 
@@ -162,7 +151,6 @@ T9ou:Toggle(SilentAim, {
     Default = false, 
     Icon = "eye", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Dropdown(SilentAim, { 
@@ -172,7 +160,6 @@ T9ou:Dropdown(SilentAim, {
     Default = "Head", 
     Icon = "target", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(SilentAim, { 
@@ -181,7 +168,6 @@ T9ou:Toggle(SilentAim, {
     Default = false, 
     Icon = "circle", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Slider(SilentAim, { 
@@ -192,7 +178,6 @@ T9ou:Slider(SilentAim, {
     Default = 150, 
     Icon = "sliders", 
     Callback = function(v) end 
-    
 })
 
 -- ==========================================
@@ -206,7 +191,6 @@ T9ou:Toggle(Weapon, {
     Default = false, 
     Icon = "crosshair", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(Weapon, { 
@@ -215,7 +199,6 @@ T9ou:Toggle(Weapon, {
     Default = false, 
     Icon = "target", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(Weapon, { 
@@ -224,7 +207,6 @@ T9ou:Toggle(Weapon, {
     Default = false, 
     Icon = "box", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Toggle(Weapon, { 
@@ -233,7 +215,6 @@ T9ou:Toggle(Weapon, {
     Default = false, 
     Icon = "zap", 
     Callback = function(v) end 
-    
 })
 
 T9ou:Slider(Weapon, { 
@@ -244,7 +225,6 @@ T9ou:Slider(Weapon, {
     Default = 1, 
     Icon = "sliders", 
     Callback = function(v) end 
-    
 })
 
 -- ==========================================
@@ -396,100 +376,118 @@ RunService.RenderStepped:Connect(function()
 			end
 		end
 
-		local headPos = inRange and Camera:WorldToViewportPoint(Hrp.Position + Vector3.new(0, 2.5, 0))
-		local footPos = inRange and Camera:WorldToViewportPoint(Hrp.Position - Vector3.new(0, 3, 0))
-		
-		-- 1. BOX ÉS TÁVOLSÁG
-		if inRange and ESPEnabled and ESPBoxEnabled and headPos.Z > 0 and footPos.Z > 0 then
-			local height = math.abs(footPos.Y - headPos.Y)
-			local width = height * 0.55
+		-- Ha az ESP be van kapcsolva ÉS a játékos a közelben van
+		if ESPEnabled and inRange then
+			local headPos = Camera:WorldToViewportPoint(Hrp.Position + Vector3.new(0, 2.5, 0))
+			local footPos = Camera:WorldToViewportPoint(Hrp.Position - Vector3.new(0, 3, 0))
 			
-			Data.Box.Position = UDim2.fromOffset(headPos.X - width/2, headPos.Y)
-			Data.Box.Size = UDim2.fromOffset(width, height)
-			Data.Box.Visible = true
-			
-			if ESPDistanceEnabled and MyHrp then
-				local dist = math.floor((MyHrp.Position - Hrp.Position).Magnitude)
-				Data.DistText.Text = "[" .. dist .. "]"
-				Data.DistText.Position = UDim2.fromOffset(headPos.X + width/2 + 5, headPos.Y + height/2 - 10)
-				Data.DistText.Visible = true
+			-- 1. BOX ÉS TÁVOLSÁG
+			if ESPBoxEnabled and headPos.Z > 0 and footPos.Z > 0 then
+				local height = math.abs(footPos.Y - headPos.Y)
+				local width = height * 0.55
+				
+				Data.Box.Position = UDim2.fromOffset(headPos.X - width/2, headPos.Y)
+				Data.Box.Size = UDim2.fromOffset(width, height)
+				Data.Box.Visible = true
+				
+				-- Szín frissítése a dobozon
+				local stroke = Data.Box:FindFirstChildOfClass("UIStroke")
+				if stroke then stroke.Color = ESPColor end
+				
+				if ESPDistanceEnabled and MyHrp then
+					local dist = math.floor((MyHrp.Position - Hrp.Position).Magnitude)
+					Data.DistText.Text = "[" .. dist .. "]"
+					Data.DistText.Position = UDim2.fromOffset(headPos.X + width/2 + 5, headPos.Y + height/2 - 10)
+					Data.DistText.TextColor3 = ESPColor
+					Data.DistText.Visible = true
+				else
+					Data.DistText.Visible = false
+				end
 			else
+				Data.Box.Visible = false
 				Data.DistText.Visible = false
 			end
-		else
-			Data.Box.Visible = false
-			Data.DistText.Visible = false
-		end
 
-		-- 2. NÉV
-		local Billboard = ESPNameTags[Player]
-		if Billboard and Billboard.Parent then
-			Billboard.Enabled = inRange and ESPNameEnabled
-			local label = Billboard:FindFirstChildOfClass("TextLabel")
-			if label then label.TextColor3 = ESPColor end
-		end
-
-		-- 3. TRACER
-		if inRange and ESPTracerEnabled and footPos.Z > 0 then
-			local startPos
-			if ESPTracerPosition == "Top" then
-				startPos = Vector2.new(Viewport.X / 2, 0)
-			elseif ESPTracerPosition == "Center" then
-				startPos = Vector2.new(Viewport.X / 2, Viewport.Y / 2)
-			else
-				startPos = Vector2.new(Viewport.X / 2, Viewport.Y)
+			-- 2. NÉV
+			local Billboard = ESPNameTags[Player]
+			if Billboard and Billboard.Parent then
+				Billboard.Enabled = ESPNameEnabled
+				local label = Billboard:FindFirstChildOfClass("TextLabel")
+				if label then label.TextColor3 = ESPColor end
 			end
-			
-			local endPos = Vector2.new(footPos.X, footPos.Y)
-			local center = (startPos + endPos) / 2
-			local diff = endPos - startPos
-			local length = diff.Magnitude
-			local angle = math.deg(math.atan2(diff.Y, diff.X))
 
-			Data.Tracer.Size = UDim2.fromOffset(length, 1)
-			Data.Tracer.Position = UDim2.fromOffset(center.X, center.Y)
-			Data.Tracer.AnchorPoint = Vector2.new(0.5, 0.5)
-			Data.Tracer.Rotation = angle
-			Data.Tracer.BackgroundColor3 = ESPColor
-			Data.Tracer.Visible = true
-		else
-			Data.Tracer.Visible = false
-		end
-
-		-- 4. SKELETON
-		if inRange and ESPSkeletonEnabled then
-			for i, bone in ipairs(SkeletonBones) do
-				local lineObj = Data.Skeleton[i]
-				local part1 = Character:FindFirstChild(bone[1])
-				local part2 = Character:FindFirstChild(bone[2])
+			-- 3. TRACER
+			if ESPTracerEnabled and footPos.Z > 0 then
+				local startPos
+				if ESPTracerPosition == "Top" then
+					startPos = Vector2.new(Viewport.X / 2, 0)
+				elseif ESPTracerPosition == "Center" then
+					startPos = Vector2.new(Viewport.X / 2, Viewport.Y / 2)
+				else
+					startPos = Vector2.new(Viewport.X / 2, Viewport.Y)
+				end
 				
-				if part1 and part2 then
-					local p1 = Camera:WorldToViewportPoint(part1.Position)
-					local p2 = Camera:WorldToViewportPoint(part2.Position)
-					
-					if p1.Z > 0 and p2.Z > 0 then
-						local v1 = Vector2.new(p1.X, p1.Y)
-						local v2 = Vector2.new(p2.X, p2.Y)
-						local center = (v1 + v2) / 2
-						local diff = v2 - v1
-						local length = diff.Magnitude
-						local angle = math.deg(math.atan2(diff.Y, diff.X))
+				local endPos = Vector2.new(footPos.X, footPos.Y)
+				local center = (startPos + endPos) / 2
+				local diff = endPos - startPos
+				local length = diff.Magnitude
+				local angle = math.deg(math.atan2(diff.Y, diff.X))
 
-						lineObj.Frame.Size = UDim2.fromOffset(length, 1)
-						lineObj.Frame.Position = UDim2.fromOffset(center.X, center.Y)
-						lineObj.Frame.AnchorPoint = Vector2.new(0.5, 0.5)
-						lineObj.Frame.Rotation = angle
-						lineObj.Frame.BackgroundColor3 = ESPColor
-						lineObj.Frame.Visible = true
+				Data.Tracer.Size = UDim2.fromOffset(length, 1)
+				Data.Tracer.Position = UDim2.fromOffset(center.X, center.Y)
+				Data.Tracer.AnchorPoint = Vector2.new(0.5, 0.5)
+				Data.Tracer.Rotation = angle
+				Data.Tracer.BackgroundColor3 = ESPColor
+				Data.Tracer.Visible = true
+			else
+				Data.Tracer.Visible = false
+			end
+
+			-- 4. SKELETON
+			if ESPSkeletonEnabled then
+				for i, bone in ipairs(SkeletonBones) do
+					local lineObj = Data.Skeleton[i]
+					local part1 = Character:FindFirstChild(bone[1])
+					local part2 = Character:FindFirstChild(bone[2])
+					
+					if part1 and part2 then
+						local p1 = Camera:WorldToViewportPoint(part1.Position)
+						local p2 = Camera:WorldToViewportPoint(part2.Position)
+						
+						if p1.Z > 0 and p2.Z > 0 then
+							local v1 = Vector2.new(p1.X, p1.Y)
+							local v2 = Vector2.new(p2.X, p2.Y)
+							local center = (v1 + v2) / 2
+							local diff = v2 - v1
+							local length = diff.Magnitude
+							local angle = math.deg(math.atan2(diff.Y, diff.X))
+
+							lineObj.Frame.Size = UDim2.fromOffset(length, 1)
+							lineObj.Frame.Position = UDim2.fromOffset(center.X, center.Y)
+							lineObj.Frame.AnchorPoint = Vector2.new(0.5, 0.5)
+							lineObj.Frame.Rotation = angle
+							lineObj.Frame.BackgroundColor3 = ESPColor
+							lineObj.Frame.Visible = true
+						else
+							lineObj.Frame.Visible = false
+						end
 					else
 						lineObj.Frame.Visible = false
 					end
-				else
-					lineObj.Frame.Visible = false
 				end
+			else
+				for _, line in ipairs(Data.Skeleton) do line.Frame.Visible = false end
 			end
+			
 		else
+			-- Ha az ESP ki van kapcsolva, elrejtjük a dolgokat
+			Data.Box.Visible = false
+			Data.DistText.Visible = false
+			Data.Tracer.Visible = false
 			for _, line in ipairs(Data.Skeleton) do line.Frame.Visible = false end
+			
+			local Billboard = ESPNameTags[Player]
+			if Billboard then Billboard.Enabled = false end
 		end
 	end
 end)
@@ -638,7 +636,9 @@ T9ou:Slider(Misc, {
     Default = 16, 
     Icon = "person-standing", 
     Callback = function(v) 
-
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.WalkSpeed = v end
     end 
 })
 
@@ -650,7 +650,9 @@ T9ou:Slider(Misc, {
     Default = 50, 
     Icon = "arrow-up", 
     Callback = function(v) 
-
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.JumpPower = v end
     end 
 })
 
