@@ -207,6 +207,65 @@ local ESPEnabled = false
 local ESPBoxEnabled = false
 local ESPConnectionName = "T9ou_ESP_Update"
 
+-- Name ESP
+local ESPNameEnabled = false
+local ESPNameTags = {}
+
+local ESPPlayers = {}
+local ESPEnabled = false
+local ESPBoxEnabled = false
+local ESPConnectionName = "T9ou_ESP_Update"
+
+local ESPNameEnabled = false
+local ESPNameTags = {}
+
+-- Name ESP function
+local function CreateNameESP(Player)
+	if Player == LocalPlayer or ESPNameTags[Player] then
+		return
+	end
+
+	local function SetupCharacter(Character)
+		local Head = Character:WaitForChild("Head", 5)
+
+		if not Head then
+			return
+		end
+
+		if ESPNameTags[Player] then
+			ESPNameTags[Player]:Destroy()
+		end
+
+		local Billboard = Instance.new("BillboardGui")
+		Billboard.Name = "T9ou_NameTag"
+		Billboard.Size = UDim2.fromOffset(160, 30)
+		Billboard.StudsOffset = Vector3.new(0, 2.8, 0)
+		Billboard.AlwaysOnTop = true
+		Billboard.MaxDistance = 1500
+		Billboard.Enabled = ESPNameEnabled
+		Billboard.Adornee = Head
+		Billboard.Parent = Head
+
+		local Label = Instance.new("TextLabel")
+		Label.Size = UDim2.fromScale(1, 1)
+		Label.BackgroundTransparency = 1
+		Label.Text = Player.DisplayName
+		Label.TextColor3 = Color3.fromRGB(255, 85, 120)
+		Label.TextStrokeTransparency = 0.2
+		Label.Font = Enum.Font.GothamBold
+		Label.TextSize = 14
+		Label.Parent = Billboard
+
+		ESPNameTags[Player] = Billboard
+	end
+
+	Player.CharacterAdded:Connect(SetupCharacter)
+
+	if Player.Character then
+		task.spawn(SetupCharacter, Player.Character)
+	end
+end
+
 -- Clean up previous ESP instance.
 pcall(function()
 	RunService:UnbindFromRenderStep(ESPConnectionName)
@@ -391,7 +450,10 @@ T9ou:Toggle(Visual, {
     Flag = "ESP_Name",
     Default = false,
     Icon = "type",
-    Callback = function(v) end
+    Callback = function(v) 
+        ESPNameEnabled = v 
+        UpdateESP()
+    end
 })
 
 T9ou:Toggle(Visual, {
