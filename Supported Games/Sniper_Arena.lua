@@ -194,6 +194,143 @@ T9ou:Slider(Weapon, {
 })
 
 -- Visual
+
+-- ESP System
+local ESPPlayers = {}
+local ESPEnabled = false
+local ESPBoxEnabled = false
+local ESPConnectionName = "T9ou_ESP_Update"
+
+local ESPGui = Instance.new("ScreenGui")
+ESPGui.Name = "T9ou_PlayerESP"
+ESPGui.ResetOnSpawn = false
+ESPGui.IgnoreGuiInset = true
+ESPGui.DisplayOrder = 999
+ESPGui.Parent = game:GetService("CoreGui")
+
+pcall(function()
+	RunService:UnbindFromRenderStep(ESPConnectionName)
+end)
+
+local function CreateESP(Player)
+	if Player == LocalPlayer or ESPPlayers[Player] then
+		return
+	end
+
+	local Box = Instance.new("Frame")
+	Box.Name = Player.Name
+	Box.BackgroundTransparency = 1
+	Box.BorderSizePixel = 0
+	Box.Visible = false
+	Box.Parent = ESPGui
+
+	local Stroke = Instance.new("UIStroke")
+	Stroke.Color = Color3.fromRGB(255, 85, 120)
+	Stroke.Thickness = 1
+	Stroke.Parent = Box
+
+	ESPPlayers[Player] = Box
+end
+
+local function RemoveESP(Player)
+	local Box = ESPPlayers[Player]
+
+	if Box then
+		Box:Destroy()
+		ESPPlayers[Player] = nil
+	end
+end
+
+for _, Player in Players:GetPlayers() do
+	CreateESP(Player)
+end
+
+Players.PlayerAdded:Connect(CreateESP)
+Players.PlayerRemoving:Connect(RemoveESP)
+
+local function UpdateESP()
+	local Camera = workspace.CurrentCamera
+
+	if not Camera then
+		return
+	end
+
+	local Viewport = Camera.ViewportSize
+
+	for Player, Box in ESPPlayers do
+		if not ESPEnabled or not ESPBoxEnabled then
+			Box.Visible = false
+			continue
+		end
+
+		local Character = Player.Character
+		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
+
+		if not Character or not Humanoid or Humanoid.Health <= 0 then
+			Box.Visible = false
+			continue
+		end
+
+		local BoundingCFrame, BoundingSize = Character:GetBoundingBox()
+		local HalfSize = BoundingSize / 2
+
+		local MinX, MinY = math.huge, math.huge
+		local MaxX, MaxY = -math.huge, -math.huge
+		local ValidPoints = 0
+
+		for X = -1, 1, 2 do
+			for Y = -1, 1, 2 do
+				for Z = -1, 1, 2 do
+					local Corner = BoundingCFrame:PointToWorldSpace(
+						Vector3.new(
+							HalfSize.X * X,
+							HalfSize.Y * Y,
+							HalfSize.Z * Z
+						)
+					)
+
+					local Point = Camera:WorldToViewportPoint(Corner)
+
+					if Point.Z > 0 then
+						ValidPoints += 1
+
+						MinX = math.min(MinX, Point.X)
+						MinY = math.min(MinY, Point.Y)
+						MaxX = math.max(MaxX, Point.X)
+						MaxY = math.max(MaxY, Point.Y)
+					end
+				end
+			end
+		end
+
+		if ValidPoints == 0 then
+			Box.Visible = false
+			continue
+		end
+
+		MinX = math.clamp(MinX, 0, Viewport.X)
+		MinY = math.clamp(MinY, 0, Viewport.Y)
+		MaxX = math.clamp(MaxX, 0, Viewport.X)
+		MaxY = math.clamp(MaxY, 0, Viewport.Y)
+
+		Box.Position = UDim2.fromOffset(MinX, MinY)
+		Box.Size = UDim2.fromOffset(
+			math.max(1, MaxX - MinX),
+			math.max(1, MaxY - MinY)
+		)
+
+		Box.Visible = true
+	end
+end
+
+RunService:BindToRenderStep(
+	ESPConnectionName,
+	Enum.RenderPriority.Camera.Value + 1,
+	UpdateESP
+)
+
+
+
 local Visual = T9ou:Tab("Visual", "eye")
 
 T9ou:Toggle(Visual, {
