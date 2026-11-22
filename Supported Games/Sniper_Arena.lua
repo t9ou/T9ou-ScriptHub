@@ -3,7 +3,7 @@ local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9o
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
 
-local LocalPlayer = Player.LocalPlayer
+local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
 T9ou:CreateWindow({
