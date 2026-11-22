@@ -43,8 +43,6 @@ T9ou:Slider(Aimbot, {
     Callback = function(v) end
 })
 
-
-
 T9ou:Toggle(Aimbot, {
     Name = "Visible Check",
     Flag = "AimbotVisibleCheck",
@@ -116,7 +114,6 @@ T9ou:Toggle(SilentAim, {
     Icon = "activity",
     Callback = function(v) end
 })
-
 
 T9ou:Toggle(SilentAim, {
     Name = "Visible Check",
@@ -198,35 +195,22 @@ T9ou:Slider(Weapon, {
     Callback = function(v) end
 })
 
--- Visual
-
-
--- ESP System
+-- ==========================================
+-- ESP SYSTEM
+-- ==========================================
 local ESPPlayers = {}
 local ESPEnabled = false
 local ESPBoxEnabled = false
-local ESPConnectionName = "T9ou_ESP_Update"
-
--- Name ESP
 local ESPNameEnabled = false
 local ESPNameTags = {}
+local ESPConnectionName = "T9ou_ESP_Update"
 
--- Name ESP function
 local function CreateNameESP(Player)
-	if Player == LocalPlayer or ESPNameTags[Player] then
-		return
-	end
-
+	if Player == LocalPlayer or ESPNameTags[Player] then return end
 	local function SetupCharacter(Character)
 		local Head = Character:WaitForChild("Head", 5)
-
-		if not Head then
-			return
-		end
-
-		if ESPNameTags[Player] then
-			ESPNameTags[Player]:Destroy()
-		end
+		if not Head then return end
+		if ESPNameTags[Player] then ESPNameTags[Player]:Destroy() end
 
 		local Billboard = Instance.new("BillboardGui")
 		Billboard.Name = "T9ou_NameTag"
@@ -245,29 +229,18 @@ local function CreateNameESP(Player)
 		Label.TextColor3 = Color3.fromRGB(255, 85, 120)
 		Label.TextStrokeTransparency = 0.2
 		Label.Font = Enum.Font.GothamBold
-		Label.TextSize = 14
+		Label.TextSize = 9
 		Label.Parent = Billboard
 
 		ESPNameTags[Player] = Billboard
 	end
-
 	Player.CharacterAdded:Connect(SetupCharacter)
-
-	if Player.Character then
-		task.spawn(SetupCharacter, Player.Character)
-	end
+	if Player.Character then task.spawn(SetupCharacter, Player.Character) end
 end
 
--- Clean up previous ESP instance.
-pcall(function()
-	RunService:UnbindFromRenderStep(ESPConnectionName)
-end)
-
+pcall(function() RunService:UnbindFromRenderStep(ESPConnectionName) end)
 local ExistingGui = PlayerGui:FindFirstChild("T9ou_PlayerESP")
-
-if ExistingGui then
-	ExistingGui:Destroy()
-end
+if ExistingGui then ExistingGui:Destroy() end
 
 local ESPGui = Instance.new("ScreenGui")
 ESPGui.Name = "T9ou_PlayerESP"
@@ -276,12 +249,8 @@ ESPGui.IgnoreGuiInset = true
 ESPGui.DisplayOrder = 999
 ESPGui.Parent = PlayerGui
 
--- Create a player's box.
 local function CreateESP(Player)
-	if Player == LocalPlayer or ESPPlayers[Player] then
-		return
-	end
-
+	if Player == LocalPlayer or ESPPlayers[Player] then return end
 	local Box = Instance.new("Frame")
 	Box.Name = Player.Name
 	Box.BackgroundTransparency = 1
@@ -295,33 +264,27 @@ local function CreateESP(Player)
 	Stroke.Parent = Box
 
 	ESPPlayers[Player] = Box
+	CreateNameESP(Player)
 end
 
--- Remove a player's box.
 local function RemoveESP(Player)
-	local Box = ESPPlayers[Player]
-
-	if Box then
-		Box:Destroy()
+	if ESPPlayers[Player] then
+		ESPPlayers[Player]:Destroy()
 		ESPPlayers[Player] = nil
+	end
+	if ESPNameTags[Player] then
+		ESPNameTags[Player]:Destroy()
+		ESPNameTags[Player] = nil
 	end
 end
 
-for _, Player in Players:GetPlayers() do
-	CreateESP(Player)
-end
-
+for _, Player in Players:GetPlayers() do CreateESP(Player) end
 local PlayerAddedConnection = Players.PlayerAdded:Connect(CreateESP)
 local PlayerRemovingConnection = Players.PlayerRemoving:Connect(RemoveESP)
 
--- Update ESP.
 local function UpdateESP()
 	local Camera = workspace.CurrentCamera
-
-	if not Camera then
-		return
-	end
-
+	if not Camera then return end
 	local Viewport = Camera.ViewportSize
 
 	for Player, Box in ESPPlayers do
@@ -329,26 +292,17 @@ local function UpdateESP()
 			Box.Visible = false
 			continue
 		end
-
 		local Character = Player.Character
 		local Humanoid = Character and Character:FindFirstChildOfClass("Humanoid")
-
 		if not Character or not Humanoid or Humanoid.Health <= 0 then
 			Box.Visible = false
 			continue
 		end
 
-		local Success, BoundingCFrame, BoundingSize = pcall(function()
-			return Character:GetBoundingBox()
-		end)
-
-		if not Success then
-			Box.Visible = false
-			continue
-		end
+		local Success, BoundingCFrame, BoundingSize = pcall(function() return Character:GetBoundingBox() end)
+		if not Success then Box.Visible = false continue end
 
 		local HalfSize = BoundingSize / 2
-
 		local MinX, MinY = math.huge, math.huge
 		local MaxX, MaxY = -math.huge, -math.huge
 		local ValidPoints = 0
@@ -356,16 +310,8 @@ local function UpdateESP()
 		for X = -1, 1, 2 do
 			for Y = -1, 1, 2 do
 				for Z = -1, 1, 2 do
-					local Corner = BoundingCFrame:PointToWorldSpace(
-						Vector3.new(
-							HalfSize.X * X,
-							HalfSize.Y * Y,
-							HalfSize.Z * Z
-						)
-					)
-
+					local Corner = BoundingCFrame:PointToWorldSpace(Vector3.new(HalfSize.X * X, HalfSize.Y * Y, HalfSize.Z * Z))
 					local Point = Camera:WorldToViewportPoint(Corner)
-
 					if Point.Z > 0 then
 						ValidPoints += 1
 						MinX = math.min(MinX, Point.X)
@@ -377,10 +323,7 @@ local function UpdateESP()
 			end
 		end
 
-		if ValidPoints == 0 then
-			Box.Visible = false
-			continue
-		end
+		if ValidPoints == 0 then Box.Visible = false continue end
 
 		MinX = math.clamp(MinX, 0, Viewport.X)
 		MinY = math.clamp(MinY, 0, Viewport.Y)
@@ -388,31 +331,20 @@ local function UpdateESP()
 		MaxY = math.clamp(MaxY, 0, Viewport.Y)
 
 		Box.Position = UDim2.fromOffset(MinX, MinY)
-		Box.Size = UDim2.fromOffset(
-			math.max(1, MaxX - MinX),
-			math.max(1, MaxY - MinY)
-		)
-
+		Box.Size = UDim2.fromOffset(math.max(1, MaxX - MinX), math.max(1, MaxY - MinY))
 		Box.Visible = true
 	end
 end
 
-RunService:BindToRenderStep(
-	ESPConnectionName,
-	Enum.RenderPriority.Camera.Value + 1,
-	UpdateESP
-)
+RunService:BindToRenderStep(ESPConnectionName, Enum.RenderPriority.Camera.Value + 1, UpdateESP)
 
--- Cleanup when the ESP GUI is destroyed.
 ESPGui.Destroying:Connect(function()
 	RunService:UnbindFromRenderStep(ESPConnectionName)
 	PlayerAddedConnection:Disconnect()
 	PlayerRemovingConnection:Disconnect()
 end)
 
-
-
-
+-- Visual Tab
 local Visual = T9ou:Tab("Visual", "eye")
 
 T9ou:Toggle(Visual, {
@@ -444,7 +376,9 @@ T9ou:Toggle(Visual, {
     Icon = "type",
     Callback = function(v) 
         ESPNameEnabled = v 
-        UpdateESP()
+        for _, Billboard in pairs(ESPNameTags) do
+            if Billboard then Billboard.Enabled = v end
+        end
     end
 })
 
@@ -527,6 +461,9 @@ T9ou:Slider(Misc, {
     Default = 16,
     Icon = "person-standing",
     Callback = function(v)
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.WalkSpeed = v end
     end
 })
 
@@ -538,6 +475,9 @@ T9ou:Slider(Misc, {
     Default = 50,
     Icon = "arrow-up",
     Callback = function(v)
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum.JumpPower = v end
     end
 })
 
