@@ -44,13 +44,73 @@ local ESPNameTags = {}
 -- 3. AIMBOT TAB
 -- ==========================================
 local Aimbot = T9ou:Tab("Aimbot", "crosshair")
-T9ou:Toggle(Aimbot, { Name = "Enable Aimbot", Flag = "AimbotEnabled", Default = false, Icon = "crosshair", Callback = function(v) end })
-T9ou:Toggle(Aimbot, { Name = "Smooth", Flag = "AimbotSmooth", Default = false, Icon = "box", Callback = function(v) end })
-T9ou:Slider(Aimbot, { Name = "Smoothness", Flag = "AimbotSmoothness", Min = 1, Max = 20, Default = 8, Icon = "sliders", Callback = function(v) end })
-T9ou:Toggle(Aimbot, { Name = "Visible Check", Flag = "AimbotVisibleCheck", Default = false, Icon = "eye", Callback = function(v) end })
-T9ou:Dropdown(Aimbot, { Name = "Target Part", Flag = "AimbotPart", Options = {"Head", "UpperTorso", "HumanoidRootPart"}, Default = "Head", Icon = "target", Callback = function(v) end })
-T9ou:Keybind(Aimbot, { Name = "Aimbot Key", Flag = "AimbotKey", Default = Enum.KeyCode.E, Icon = "keyboard", Callback = function(k) end })
-T9ou:Toggle(Aimbot, { Name = "Show FOV", Flag = "AimbotFOV", Default = false, Icon = "circle", Callback = function(v) end })
+
+T9ou:Toggle(Aimbot, { 
+    Name = "Enable Aimbot", 
+    Flag = "AimbotEnabled", 
+    Default = false, 
+    Icon = "crosshair", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(Aimbot, { 
+    Name = "Smooth", 
+    Flag = "AimbotSmooth", 
+    Default = false, 
+    Icon = "box", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Slider(Aimbot, { 
+    Name = "Smoothness", 
+    Flag = "AimbotSmoothness", 
+    Min = 1, 
+    Max = 20, 
+    Default = 8, 
+    Icon = "sliders", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Toggle(Aimbot, { 
+    Name = "Visible Check", 
+    Flag = "AimbotVisibleCheck", 
+    Default = false, 
+    Icon = "eye", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Dropdown(Aimbot, { 
+    Name = "Target Part", 
+    Flag = "AimbotPart", 
+    Options = {"Head", "UpperTorso", "HumanoidRootPart"}, 
+    Default = "Head", 
+    Icon = "target", 
+    Callback = function(v) end 
+    
+})
+
+T9ou:Keybind(Aimbot, { 
+    Name = "Aimbot Key", 
+    Flag = "AimbotKey", 
+    Default = Enum.KeyCode.E, 
+    Icon = "keyboard", 
+    Callback = function(k) end 
+    
+})
+
+T9ou:Toggle(Aimbot, { 
+    Name = "Show FOV", 
+    Flag = "AimbotFOV", 
+    Default = false, 
+    Icon = "circle", 
+    Callback = function(v) end 
+    
+})
+
 T9ou:Slider(Aimbot, { Name = "FOV Size", Flag = "AimbotFOVSize", Min = 20, Max = 400, Default = 120, Icon = "sliders", Callback = function(v) end })
 
 -- ==========================================
