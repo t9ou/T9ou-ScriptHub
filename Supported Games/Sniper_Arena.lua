@@ -38,13 +38,7 @@ T9ou:Slider(Aimbot, {
     Callback = function(v) end
 })
 
-T9ou:Toggle(Aimbot, {
-    Name = "Team Check",
-    Flag = "AimbotTeamCheck",
-    Default = false,
-    Icon = "users",
-    Callback = function(v) end
-})
+
 
 T9ou:Toggle(Aimbot, {
     Name = "Visible Check",
@@ -118,13 +112,6 @@ T9ou:Toggle(SilentAim, {
     Callback = function(v) end
 })
 
-T9ou:Toggle(SilentAim, {
-    Name = "Team Check",
-    Flag = "SilentTeamCheck",
-    Default = false,
-    Icon = "users",
-    Callback = function(v) end
-})
 
 T9ou:Toggle(SilentAim, {
     Name = "Visible Check",
@@ -262,14 +249,6 @@ T9ou:Toggle(Visual, {
     Flag = "ESP_Tracer",
     Default = false,
     Icon = "minus",
-    Callback = function(v) end
-})
-
-T9ou:Toggle(Visual, {
-    Name = "Team Check",
-    Flag = "ESP_TeamCheck",
-    Default = false,
-    Icon = "users",
     Callback = function(v) end
 })
 
