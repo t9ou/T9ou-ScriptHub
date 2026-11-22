@@ -199,7 +199,6 @@ T9ou:Slider(Weapon, {
 })
 
 -- Visual
-local Visual = T9ou:Tab("Visual", "eye")
 
 
 -- ESP System
@@ -259,21 +258,10 @@ local function CreateNameESP(Player)
 	end
 end
 
-local function RemoveNameESP(Player)
-	local Tag = ESPNameTags[Player]
-
-	if Tag then
-		Tag:Destroy()
-		ESPNameTags[Player] = nil
-	end
-end
-
 -- Clean up previous ESP instance.
 pcall(function()
 	RunService:UnbindFromRenderStep(ESPConnectionName)
 end)
-
-local ExistingGui = PlayerGui:FindFirstChild("T9ou_PlayerESP
 
 local ExistingGui = PlayerGui:FindFirstChild("T9ou_PlayerESP")
 
@@ -321,18 +309,10 @@ end
 
 for _, Player in Players:GetPlayers() do
 	CreateESP(Player)
-	CreateNameESP(Player)
 end
 
-local PlayerAddedConnection = Players.PlayerAdded:Connect(function(Player)
-	CreateESP(Player)
-	CreateNameESP(Player)
-end)
-
-local PlayerRemovingConnection = Players.PlayerRemoving:Connect(function(Player)
-	RemoveESP(Player)
-	RemoveNameESP(Player)
-end)
+local PlayerAddedConnection = Players.PlayerAdded:Connect(CreateESP)
+local PlayerRemovingConnection = Players.PlayerRemoving:Connect(RemoveESP)
 
 -- Update ESP.
 local function UpdateESP()
@@ -402,52 +382,185 @@ local function UpdateESP()
 			continue
 		end
 
-		local Width = MaxX - MinX
-		local Height = MaxY - MinY
-
-		if Width <= 0 or Height <= 0 then
-			Box.Visible = false
-			continue
-		end
+		MinX = math.clamp(MinX, 0, Viewport.X)
+		MinY = math.clamp(MinY, 0, Viewport.Y)
+		MaxX = math.clamp(MaxX, 0, Viewport.X)
+		MaxY = math.clamp(MaxY, 0, Viewport.Y)
 
 		Box.Position = UDim2.fromOffset(MinX, MinY)
-		Box.Size = UDim2.fromOffset(Width, Height)
+		Box.Size = UDim2.fromOffset(
+			math.max(1, MaxX - MinX),
+			math.max(1, MaxY - MinY)
+		)
+
 		Box.Visible = true
 	end
 end
 
-RunService:BindToRenderStep(ESPConnectionName, Enum.RenderPriority.Camera.Value + 1, UpdateESP)
+RunService:BindToRenderStep(
+	ESPConnectionName,
+	Enum.RenderPriority.Camera.Value + 1,
+	UpdateESP
+)
 
--- Visual tab wiring
+-- Cleanup when the ESP GUI is destroyed.
+ESPGui.Destroying:Connect(function()
+	RunService:UnbindFromRenderStep(ESPConnectionName)
+	PlayerAddedConnection:Disconnect()
+	PlayerRemovingConnection:Disconnect()
+end)
+
+
+
+
+local Visual = T9ou:Tab("Visual", "eye")
+
 T9ou:Toggle(Visual, {
-	Name = "Player ESP",
-	Flag = "ESPEnabled",
-	Default = false,
-	Icon = "box",
-	Callback = function(v)
-		ESPEnabled = v
-	end
+    Name = "Enable ESP",
+    Flag = "ESPEnabled",
+    Default = false,
+    Icon = "eye",
+    Callback = function(v)
+        ESPEnabled = v
+        UpdateESP()
+    end
 })
 
 T9ou:Toggle(Visual, {
-	Name = "Box ESP",
-	Flag = "ESPBox",
-	Default = false,
-	Icon = "square",
-	Callback = function(v)
-		ESPBoxEnabled = v
-	end
+    Name = "Box",
+    Flag = "ESP_Box",
+    Default = false,
+    Icon = "square",
+    Callback = function(v) 
+        ESPBoxEnabled = v 
+        UpdateESP()
+    end
 })
 
 T9ou:Toggle(Visual, {
-	Name = "Name ESP",
-	Flag = "ESPName",
-	Default = false,
-	Icon = "type",
-	Callback = function(v)
-		ESPNameEnabled = v
-		for _, Tag in ESPNameTags do
-			Tag.Enabled = v
-		end
-	end
+    Name = "Name",
+    Flag = "ESP_Name",
+    Default = false,
+    Icon = "type",
+    Callback = function(v) 
+        ESPNameEnabled = v 
+        UpdateESP()
+    end
+})
+
+T9ou:Toggle(Visual, {
+    Name = "Health Bar",
+    Flag = "ESP_Health",
+    Default = false,
+    Icon = "heart",
+    Callback = function(v) end
+})
+
+T9ou:Toggle(Visual, {
+    Name = "Distance",
+    Flag = "ESP_Distance_Text",
+    Default = false,
+    Icon = "ruler",
+    Callback = function(v) end
+})
+
+T9ou:Toggle(Visual, {
+    Name = "Skeleton",
+    Flag = "ESP_Skeleton",
+    Default = false,
+    Icon = "bone",
+    Callback = function(v) end
+})
+
+T9ou:Toggle(Visual, {
+    Name = "Tracer",
+    Flag = "ESP_Tracer",
+    Default = false,
+    Icon = "minus",
+    Callback = function(v) end
+})
+
+T9ou:ColorPicker(Visual, {
+    Name = "ESP Color",
+    Flag = "ESP_Color",
+    Default = Color3.fromRGB(255, 85, 120),
+    Icon = "palette",
+    Callback = function(c) end
+})
+
+T9ou:Slider(Visual, {
+    Name = "Max Distance",
+    Flag = "ESP_Distance",
+    Min = 100,
+    Max = 3000,
+    Default = 1500,
+    Icon = "sliders",
+    Callback = function(v) end
+})
+
+-- Skin Changer
+local SkinChanger = T9ou:Tab("Skin Changer", "palette")
+
+T9ou:Dropdown(SkinChanger, {
+    Name = "Skin",
+    Flag = "SelectedSkin",
+    Options = {"Default", "Gold", "Diamond", "Galaxy", "Neon"},
+    Default = "Default",
+    Icon = "palette",
+    Callback = function(v) end
+})
+
+T9ou:Button(SkinChanger, {
+    Name = "Apply Skin",
+    Icon = "check",
+    Callback = function() end
+})
+
+-- Misc
+local Misc = T9ou:Tab("Misc", "settings")
+
+T9ou:Slider(Misc, {
+    Name = "WalkSpeed",
+    Flag = "WalkSpeed",
+    Min = 16,
+    Max = 150,
+    Default = 16,
+    Icon = "person-standing",
+    Callback = function(v)
+    end
+})
+
+T9ou:Slider(Misc, {
+    Name = "JumpPower",
+    Flag = "JumpPower",
+    Min = 50,
+    Max = 200,
+    Default = 50,
+    Icon = "arrow-up",
+    Callback = function(v)
+    end
+})
+
+T9ou:Toggle(Misc, {
+    Name = "Fly",
+    Flag = "Fly",
+    Default = false,
+    Icon = "plane",
+    Callback = function(v) end
+})
+
+T9ou:Toggle(Misc, {
+    Name = "Noclip",
+    Flag = "Noclip",
+    Default = false,
+    Icon = "ghost",
+    Callback = function(v) end
+})
+
+T9ou:Toggle(Misc, {
+    Name = "Infinite Jump",
+    Flag = "InfJump",
+    Default = false,
+    Icon = "arrow-up-circle",
+    Callback = function(v) end
 })
