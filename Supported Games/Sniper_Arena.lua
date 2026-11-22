@@ -200,23 +200,32 @@ T9ou:Slider(Weapon, {
 
 -- Visual
 
+
 -- ESP System
 local ESPPlayers = {}
 local ESPEnabled = false
 local ESPBoxEnabled = false
 local ESPConnectionName = "T9ou_ESP_Update"
 
+-- Clean up previous ESP instance.
+pcall(function()
+	RunService:UnbindFromRenderStep(ESPConnectionName)
+end)
+
+local ExistingGui = PlayerGui:FindFirstChild("T9ou_PlayerESP")
+
+if ExistingGui then
+	ExistingGui:Destroy()
+end
+
 local ESPGui = Instance.new("ScreenGui")
 ESPGui.Name = "T9ou_PlayerESP"
 ESPGui.ResetOnSpawn = false
 ESPGui.IgnoreGuiInset = true
 ESPGui.DisplayOrder = 999
-ESPGui.Parent = game:GetService("CoreGui")
+ESPGui.Parent = PlayerGui
 
-pcall(function()
-	RunService:UnbindFromRenderStep(ESPConnectionName)
-end)
-
+-- Create a player's box.
 local function CreateESP(Player)
 	if Player == LocalPlayer or ESPPlayers[Player] then
 		return
@@ -237,6 +246,7 @@ local function CreateESP(Player)
 	ESPPlayers[Player] = Box
 end
 
+-- Remove a player's box.
 local function RemoveESP(Player)
 	local Box = ESPPlayers[Player]
 
@@ -250,9 +260,10 @@ for _, Player in Players:GetPlayers() do
 	CreateESP(Player)
 end
 
-Players.PlayerAdded:Connect(CreateESP)
-Players.PlayerRemoving:Connect(RemoveESP)
+local PlayerAddedConnection = Players.PlayerAdded:Connect(CreateESP)
+local PlayerRemovingConnection = Players.PlayerRemoving:Connect(RemoveESP)
 
+-- Update ESP.
 local function UpdateESP()
 	local Camera = workspace.CurrentCamera
 
@@ -276,7 +287,15 @@ local function UpdateESP()
 			continue
 		end
 
-		local BoundingCFrame, BoundingSize = Character:GetBoundingBox()
+		local Success, BoundingCFrame, BoundingSize = pcall(function()
+			return Character:GetBoundingBox()
+		end)
+
+		if not Success then
+			Box.Visible = false
+			continue
+		end
+
 		local HalfSize = BoundingSize / 2
 
 		local MinX, MinY = math.huge, math.huge
@@ -298,7 +317,6 @@ local function UpdateESP()
 
 					if Point.Z > 0 then
 						ValidPoints += 1
-
 						MinX = math.min(MinX, Point.X)
 						MinY = math.min(MinY, Point.Y)
 						MaxX = math.max(MaxX, Point.X)
@@ -333,6 +351,14 @@ RunService:BindToRenderStep(
 	Enum.RenderPriority.Camera.Value + 1,
 	UpdateESP
 )
+
+-- Cleanup when the ESP GUI is destroyed.
+ESPGui.Destroying:Connect(function()
+	RunService:UnbindFromRenderStep(ESPConnectionName)
+	PlayerAddedConnection:Disconnect()
+	PlayerRemovingConnection:Disconnect()
+end)
+
 
 
 
