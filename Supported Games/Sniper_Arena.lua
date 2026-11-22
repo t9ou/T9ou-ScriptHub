@@ -211,14 +211,6 @@ local ESPConnectionName = "T9ou_ESP_Update"
 local ESPNameEnabled = false
 local ESPNameTags = {}
 
-local ESPPlayers = {}
-local ESPEnabled = false
-local ESPBoxEnabled = false
-local ESPConnectionName = "T9ou_ESP_Update"
-
-local ESPNameEnabled = false
-local ESPNameTags = {}
-
 -- Name ESP function
 local function CreateNameESP(Player)
 	if Player == LocalPlayer or ESPNameTags[Player] then
