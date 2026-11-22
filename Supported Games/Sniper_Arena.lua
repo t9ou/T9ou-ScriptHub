@@ -1,12 +1,4 @@
-local function request(opts)
-    local req = (syn and syn.request) or (http and http.request) or http_request or request
-    if req then
-        return req(opts)
-    end
-    return { Body = game:HttpGet(opts.Url, true), StatusCode = 200, Success = true }
-end
-
-local T9ou = loadstring(request({ Url = "YOUR_LIBRARY_URL_HERE", Method = "GET" }).Body)()
+local T9ou = loadstring(game:HttpGet("https://raw.githubusercontent.com/t9ou/T9ou-ScriptHub/main/T9ou_ui.lua"))()
 
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
