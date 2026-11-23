@@ -23,8 +23,8 @@ T9ou:CreateWindow({
     Icon = "flame"
 })
 
-T9ou:SetFooter("Sniper Arena")
-T9ou:Notify("Loaded", "Sniper Arena script loaded!")
+T9ou:SetFooter("Da hood")
+T9ou:Notify("Loaded", "Da hood script loaded!")
 
 -- ==========================================
 -- 2. ESP VÁLTOZÓK
