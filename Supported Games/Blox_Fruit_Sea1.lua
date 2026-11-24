@@ -92,10 +92,10 @@ local Farm = T9ou:Tab("Farm", "zap")
         })
 
     local QuestGroup = T9ou:GroupBox(Farm, {
-    Name = "Auto Farm",
+    Name = "Auto Farm Quest",
     Icon = "zap",
     DefaultOpen = true,
-    Side = "Left" 
+    Side = "Right" 
     })
 
     local MasteryGroup = T9ou:GroupBox(Farm, {
