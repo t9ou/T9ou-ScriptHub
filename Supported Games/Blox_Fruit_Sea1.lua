@@ -16,32 +16,32 @@ T9ou:SetFooter("Blox Fruit Sea 1")
 T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 
 local Farm = T9ou:Tab("Farm", "zap")
-    local Group = T9ou:GroupBox(Tab, {
-    Name = "Settings",
+    local AutoGroup = T9ou:GroupBox(Farm, {
+    Name = "Auto Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" 
+    Side = "left" 
     })
 
-    local Group = T9ou:GroupBox(Tab, {
-    Name = "Settings",
+    local MasteryGroup = T9ou:GroupBox(Farm, {
+    Name = "Mastery Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" 
+    Side = "right" 
     })
 
-    local Group = T9ou:GroupBox(Tab, {
-    Name = "Settings",
+    local BossGroup = T9ou:GroupBox(Farm, {
+    Name = "Boss Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" 
+    Side = "left" 
     })
 
-    local Group = T9ou:GroupBox(Tab, {
-    Name = "Settings",
+    local MoneyGroup = T9ou:GroupBox(Farm, {
+    Name = "Money Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" 
+    Side = "right" 
     })
 
 
