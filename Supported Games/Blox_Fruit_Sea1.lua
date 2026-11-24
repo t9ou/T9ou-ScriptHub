@@ -131,7 +131,6 @@ local Player = T9ou:Tab("Player", "user-round")
     })
 
 local Fruits = T9ou:Tab("Fruits", "apple")
-
     T9ou:Toggle(Fruits, {
     Name = "Auto Collect Fruits",
     Default = false,
@@ -160,6 +159,34 @@ local Fruits = T9ou:Tab("Fruits", "apple")
     })
 
 local Visuals = T9ou:Tab("Visuals", "eye")
+    local PlayerESPGroup = T9ou:GroupBox(Visuals, {
+    Name = "Player ESP",
+    Icon = "scan-eye",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
+    local FruitESPGroup = T9ou:GroupBox(Visuals, {
+    Name = "Fruit ESP",
+    Icon = "apple",
+    DefaultOpen = true,
+    Side = "Right" 
+    })
+
+    local ChestESPGroup = T9ou:GroupBox(Visuals, {
+    Name = "Chest ESP",
+    Icon = "treasure-chest",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
+    local FlowerESPGroup = T9ou:GroupBox(Visuals, {
+    Name = "Flower ESP",
+    Icon = "flower-2",
+    DefaultOpen = true,
+    Side = "Right" 
+    })
+    
 
 local Misc = T9ou:Tab("Misc", "grid-3x3")
 
