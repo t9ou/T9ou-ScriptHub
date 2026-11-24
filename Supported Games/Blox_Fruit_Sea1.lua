@@ -49,6 +49,14 @@ local Aimbot = Window:AddTab({
             Max = 100,
             Rounding = 0,
         })
+    
+        local AimbotPrediction = AimbotSetting:AddSlider("Sensitivity", {
+            Text = "Aimbot Prediction",
+            Default = 1,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+        })
 
     local AimbotFOV = Aimbot:AddGroupbox({
         Side = "Right",
