@@ -124,13 +124,40 @@ local Player = T9ou:Tab("Player", "user-round")
     Callback = function() end
     })
 
-    T9ou:Button(SkinChanger, {
+    T9ou:Button(Player, {
     Name = "Rejoin Server",
     Icon = "refresh-cw",
     Callback = function() end
     })
 
 local Fruits = T9ou:Tab("Fruits", "apple")
+
+    T9ou:Toggle(Fruits, {
+    Name = "Auto Collect Fruits",
+    Default = false,
+    Icon = "apple",
+    Callback = function(v) end
+    })
+
+    T9ou:Button(Fruits, {
+    Name = "Fruit Gacha",
+    Icon = "dices",
+    Callback = function() end
+    })
+
+    T9ou:Toggle(Fruits, {
+    Name = "Fruit Notifier",
+    Default = false,
+    Icon = "bell",
+    Callback = function(v) end
+    })
+
+    T9ou:Toggle(Fruits, {
+    Name = "Auto Store Fruit",
+    Default = false,
+    Icon = "package-check",
+    Callback = function(v) end
+    })
 
 local Visuals = T9ou:Tab("Visuals", "eye")
 
