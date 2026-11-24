@@ -15,3 +15,18 @@ T9ou:CreateWindow({
 T9ou:SetFooter("Blox Fruit Sea 1🌊")
 T9ou:Notify("Loaded", "Blox Fruit script loaded!")
 
+local Farm = T9ou:Tab("Farm", "zap")
+
+local Combat = T9ou:Tab("Combat", "swords")
+
+local World = T9ou:Tab("World", "earth")
+
+local Player = T9ou:Tab("Player", "user-round")
+
+local Fruits = T9ou:Tab("Fruits", "apple")
+
+local Visuals = T9ou:Tab("Visual", "eye")
+
+local Misc = T9ou:Tab("Misc", "grid-3x3")
+
+local Settings = T9ou:Tab("Settings", "settings")
