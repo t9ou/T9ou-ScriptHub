@@ -66,7 +66,7 @@ local Farm = T9ou:Tab("Farm", "zap")
             end
         })
     
-        T9ou:Button(Player, {
+        T9ou:Button(AutoGroup, {
             Name = "Refresh Weapon",
             Icon = "refresh-cw",
             Callback = function() 
