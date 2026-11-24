@@ -19,6 +19,17 @@ local Aimbot = Window:AddTab({
     Tooltip = false,
 })
 
+    local AimbotSetting = Aimbot:AddGroupbox({
+        Side = "Left",
+        Name = "Aimbot Setting",
+    })
+
+
+
+    local AimbotFOV = Aimbot:AddGroupbox({
+        Side = "Right",
+        Name = "Aimbot FOV",
+    })
 end
 --================================
 --Silent Aim
