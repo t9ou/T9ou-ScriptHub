@@ -19,6 +19,13 @@ T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 --=========================================
 -- Function
 --=========================================
+local items = {}
+for _, v in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+    if v:IsA("Tool") then
+        table.insert(items, v.Name)
+    end
+end
+
 
 --=========================================
 -- Farm Tab
@@ -51,8 +58,8 @@ local Farm = T9ou:Tab("Farm", "zap")
         T9ou:Dropdown(Tab, {
             Name = "Select Weapon",
             Flag = "TargetPart",
-            Options = {"Fist", "Sword", "Gun", "Fruit"},
-            Default = "Head",
+            Options = items, 
+            Default = items[1] or "none",
             Multi = false,
             Icon = "list",
             Callback = function(v)
