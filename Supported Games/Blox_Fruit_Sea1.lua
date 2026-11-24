@@ -12,8 +12,8 @@ T9ou:CreateWindow({
     Icon = "flame"
 })
 
-T9ou:SetFooter("Blox Fruit Sea 1🌊")
-T9ou:Notify("Loaded", "Blox Fruit script loaded!")
+T9ou:SetFooter("Blox Fruit Sea 1")
+T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 
 local Farm = T9ou:Tab("Farm", "zap")
 
