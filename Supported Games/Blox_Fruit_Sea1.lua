@@ -35,7 +35,7 @@ local Aimbot = Window:AddTab({
             Mode = "Toggle",
         })
     
-        local Dropdown = AimbotSetting:AddDropdown("MyDropdown", {
+        local TargetPart = AimbotSetting:AddDropdown("MyDropdown", {
             Text = "Target Part:",
             Values = { "Head", "Torso", "HumanoidRootPart"},
             Default = 1,
