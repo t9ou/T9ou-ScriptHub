@@ -104,6 +104,31 @@ local World = T9ou:Tab("World", "earth")
     })
 
 local Player = T9ou:Tab("Player", "user-round")
+    local MovementGroup = T9ou:GroupBox(Player, {
+    Name = "Movement",
+    Icon = "footprints",
+    DefaultOpen = true,
+    Side = "Full" 
+    })
+    
+    T9ou:Toggle(Player, {
+    Name = "Anti-AFK",
+    Default = false,
+    Icon = "clock",
+    Callback = function(v) end
+    })
+
+    T9ou:Button(Player, {
+    Name = "Server Hop",
+    Icon = "server",
+    Callback = function() end
+    })
+
+    T9ou:Button(SkinChanger, {
+    Name = "Rejoin Server",
+    Icon = "refresh-cw",
+    Callback = function() end
+    })
 
 local Fruits = T9ou:Tab("Fruits", "apple")
 
