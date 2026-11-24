@@ -57,6 +57,21 @@ local Aimbot = Window:AddTab({
             Max = 100,
             Rounding = 0,
         })
+    
+        local TeamCheck = AimbotSetting:AddToggle("TeamCheck", {
+            Text = "Team Check",
+            Default = false,
+        })
+    
+        local WallCheck = AimbotSetting:AddToggle("WallCheck", {
+            Text = "Wall Check",
+            Default = false,
+        })
+    
+        local VisibleCheck = AimbotSetting:AddToggle("VisibleCheck", {
+            Text = "Visible Check",
+            Default = false,
+        })
 
     local AimbotFOV = Aimbot:AddGroupbox({
         Side = "Right",
