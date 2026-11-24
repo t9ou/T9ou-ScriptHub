@@ -187,7 +187,5 @@ local Visuals = T9ou:Tab("Visuals", "eye")
     Side = "Right" 
     })
     
-
-local Misc = T9ou:Tab("Misc", "grid-3x3")
-
 local Settings = T9ou:Tab("Settings", "settings")
+    T9ou:Divider(Tab, "created by T9ou")
