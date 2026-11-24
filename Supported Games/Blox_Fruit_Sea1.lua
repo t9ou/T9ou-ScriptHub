@@ -20,28 +20,28 @@ local Farm = T9ou:Tab("Farm", "zap")
     Name = "Settings",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" -- "Left" / "Right" / "Full"
+    Side = "Full" 
     })
 
     local Group = T9ou:GroupBox(Tab, {
     Name = "Settings",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" -- "Left" / "Right" / "Full"
+    Side = "Full" 
     })
 
     local Group = T9ou:GroupBox(Tab, {
     Name = "Settings",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" -- "Left" / "Right" / "Full"
+    Side = "Full" 
     })
 
     local Group = T9ou:GroupBox(Tab, {
     Name = "Settings",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "Full" -- "Left" / "Right" / "Full"
+    Side = "Full" 
     })
 
 
