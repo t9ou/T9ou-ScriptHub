@@ -14,3 +14,4 @@ T9ou:CreateWindow({
 
 T9ou:SetFooter("Blox Fruit Sea 1🌊")
 T9ou:Notify("Loaded", "Blox Fruit script loaded!")
+
