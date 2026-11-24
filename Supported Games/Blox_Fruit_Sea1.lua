@@ -20,28 +20,28 @@ local Farm = T9ou:Tab("Farm", "zap")
     Name = "Auto Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "left" 
+    Side = "Left" 
     })
 
     local MasteryGroup = T9ou:GroupBox(Farm, {
     Name = "Mastery Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "right" 
+    Side = "Right" 
     })
 
     local BossGroup = T9ou:GroupBox(Farm, {
     Name = "Boss Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "left" 
+    Side = "Left" 
     })
 
     local MoneyGroup = T9ou:GroupBox(Farm, {
     Name = "Money Farm",
     Icon = "folder",
     DefaultOpen = true,
-    Side = "right" 
+    Side = "Right" 
     })
 
 
