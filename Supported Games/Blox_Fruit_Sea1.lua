@@ -68,6 +68,40 @@ local Combat = T9ou:Tab("Combat", "swords")
     })
 
 local World = T9ou:Tab("World", "earth")
+    local IslandGroup = T9ou:GroupBox(World, {
+    Name = "Island Teleport",
+    Icon = "map",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
+    local NPCGroup = T9ou:GroupBox(World, {
+    Name = "NPC Teleport",
+    Icon = "users",
+    DefaultOpen = true,
+    Side = "Right" 
+    })
+
+    local BossGroup = T9ou:GroupBox(World, {
+    Name = "Boss Teleport",
+    Icon = "skull",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
+    local ShopGroup = T9ou:GroupBox(World, {
+    Name = "Shop Teleport",
+    Icon = "shopping-bag",
+    DefaultOpen = true,
+    Side = "Right" 
+    })
+
+    local TrainerGroup = T9ou:GroupBox(World, {
+    Name = "Trainer Teleport",
+    Icon = "graduation-cap",
+    DefaultOpen = true,
+    Side = "Full" 
+    })
 
 local Player = T9ou:Tab("Player", "user-round")
 
