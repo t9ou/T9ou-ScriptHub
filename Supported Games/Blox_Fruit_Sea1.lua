@@ -3,7 +3,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/deivi
 local Window = Library:CreateWindow({
     Title = "T9ou Hub",
     Footer = "Araenal",
-    Icon = false,
+    Icon = "eclipse",
     NotifySide = "Right",
 })
 
