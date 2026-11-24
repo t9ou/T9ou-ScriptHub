@@ -65,6 +65,12 @@ local Farm = T9ou:Tab("Farm", "zap")
                 print(v)
             end
         })
+    
+        T9ou:Button(Player, {
+            Name = "Server Hop",
+            Icon = "refresh-cw",
+            Callback = function() end
+        })
 
     local QuestGroup = T9ou:GroupBox(Farm, {
     Name = "Auto Farm",
