@@ -77,6 +77,38 @@ local Aimbot = Window:AddTab({
         Side = "Right",
         Name = "Aimbot FOV",
     })
+
+        local ShowFOV = AimbotFOV:AddToggle("ShowFOV", {
+            Text = "Show FOV",
+            Default = false,
+        })
+    
+        local FOVSize = AimbotFOV:AddSlider("Sensitivity", {
+            Text = "FOV Size",
+            Default = 1,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+        })
+    
+        local FOVColorPicker = ShowFOV:AddColorPicker("ColorPicker1", {
+            Default = Color3.new(1, 0, 0),
+            Title = "DOV Color",
+            Resizable = true,
+        })
+    
+        local FilledFOV = AimbotFOV:AddToggle("ShowFOV", {
+            Text = "Filled FOV",
+            Default = false,
+        })
+    
+        local FOVTransparency = AimbotFOV:AddSlider("Sensitivity", {
+            Text = "FOV Transparency",
+            Default = 1,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+        })
 end
 --================================
 --Silent Aim
