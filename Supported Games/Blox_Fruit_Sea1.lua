@@ -17,8 +17,12 @@ T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 
 
 --=========================================
+-- Function
+--=========================================
 
-
+--=========================================
+-- Farm Tab
+--=========================================
 local Farm = T9ou:Tab("Farm", "zap")
     local AutoGroup = T9ou:GroupBox(Farm, {
     Name = "Auto Farm",
@@ -84,7 +88,9 @@ local Farm = T9ou:Tab("Farm", "zap")
     Side = "Full" 
     })
 
-
+--=========================================
+-- Combat Tab
+--=========================================
 local Combat = T9ou:Tab("Combat", "swords")
     local AimGroup = T9ou:GroupBox(Combat, {
     Name = "Auto Aim",
@@ -107,6 +113,9 @@ local Combat = T9ou:Tab("Combat", "swords")
     Side = "Full" 
     })
 
+--=========================================
+-- World Tab
+--=========================================
 local World = T9ou:Tab("World", "earth")
     local IslandGroup = T9ou:GroupBox(World, {
     Name = "Island Teleport",
@@ -143,6 +152,9 @@ local World = T9ou:Tab("World", "earth")
     Side = "Full" 
     })
 
+--=========================================
+-- Player Tab
+--=========================================
 local Player = T9ou:Tab("Player", "user-round")
     local MovementGroup = T9ou:GroupBox(Player, {
     Name = "Movement",
@@ -170,6 +182,9 @@ local Player = T9ou:Tab("Player", "user-round")
     Callback = function() end
     })
 
+--=========================================
+-- Fruit Tab
+--=========================================
 local Fruits = T9ou:Tab("Fruits", "apple")
     T9ou:Toggle(Fruits, {
     Name = "Auto Collect Fruits",
@@ -198,6 +213,9 @@ local Fruits = T9ou:Tab("Fruits", "apple")
     Callback = function(v) end
     })
 
+--=========================================
+-- Visual Tab
+--=========================================
 local Visuals = T9ou:Tab("Visuals", "eye")
     local PlayerESPGroup = T9ou:GroupBox(Visuals, {
     Name = "Player ESP",
@@ -226,7 +244,10 @@ local Visuals = T9ou:Tab("Visuals", "eye")
     DefaultOpen = true,
     Side = "Right" 
     })
-    
+
+--=========================================
+-- Setting Tab
+--=========================================
 local Settings = T9ou:Tab("Settings", "settings")
     T9ou:Divider(Settings, "created by T9ou")
     T9ou:Divider(Settings, "currently under development")
