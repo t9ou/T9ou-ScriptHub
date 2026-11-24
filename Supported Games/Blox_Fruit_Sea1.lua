@@ -20,6 +20,16 @@ local Aimbot = Window:AddTab({
 })
 
 end
+
+do
+local Weapon = Window:AddTab({
+    Name = "Weapon",
+    Description = "Weapon Features",
+    Icon = "gun",
+    Tooltip = false,
+})
+
+end
 --================================
 --Silent Aim
 --================================
