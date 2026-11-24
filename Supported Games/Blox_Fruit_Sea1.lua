@@ -14,8 +14,8 @@ Library:Notify("Script Loaded: Arsenal", 3)
 do
 local Aimbot = Window:AddTab({
     Name = "Aimbot",
-    Description = "Main features",
-    Icon = "home",
+    Description = "Targeting & Aim Assistance",
+    Icon = "crosshair",
     Tooltip = false,
 })
 
@@ -26,8 +26,8 @@ end
 do
 local SilentAim = Window:AddTab({
     Name = "Silent Aim",
-    Description = "Main features",
-    Icon = "home",
+    Description = "Undetected Targeting Features",
+    Icon = "scan",
     Tooltip = false,
 })
 
@@ -38,8 +38,8 @@ end
 do
 local Visual = Window:AddTab({
     Name = "Visual",
-    Description = "Main features",
-    Icon = "home",
+    Description = "ESP & Visual Enhancements",
+    Icon = "eye",
     Tooltip = false,
 })
 
@@ -50,8 +50,8 @@ end
 do
     local LPlayer = Window:AddTab({
         Name = "Player",
-        Description = "Main features",
-        Icon = "home",
+        Description = "Player Movement & Utilities",
+        Icon = "user",
         Tooltip = false,
     })
 
