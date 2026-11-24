@@ -189,3 +189,5 @@ local Visuals = T9ou:Tab("Visuals", "eye")
     
 local Settings = T9ou:Tab("Settings", "settings")
     T9ou:Divider(Settings, "created by T9ou")
+    T9ou:Divider(Settings, "currently under development")
+    T9ou:Divider(Settings, "version: 1.0")
