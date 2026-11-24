@@ -122,6 +122,15 @@ local SilentAim = Window:AddTab({
     Tooltip = false,
 })
 
+    local SilentAimSettings = SilentAim:AddGroupbox({
+        Side = "Left",
+        Name = "Silent Aim Setting",
+    })
+
+    local SilentAimFOV = SilentAim:AddGroupbox({
+        Side = "Right",
+        Name = "Silent Aim FOV",
+    })
 end
 --================================
 --Weapon
