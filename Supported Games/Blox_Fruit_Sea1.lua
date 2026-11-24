@@ -24,7 +24,6 @@ for _, v in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     if v:IsA("Tool") then
         table.insert(items, v.Name)
     end
-end
 
 
 --=========================================
