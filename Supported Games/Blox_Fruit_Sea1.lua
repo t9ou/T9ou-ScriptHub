@@ -30,15 +30,27 @@ local Farm = T9ou:Tab("Farm", "zap")
         })
     
         T9ou:Dropdown(Tab, {
-            Name = "Target Part",
-            Options = {"Head", "Torso", "HumanoidRootPart"},
-            Default = "Head",
+            Name = "Select Mob",
+            Options = {"Bandit", "Monkey", "Gorilla", "Pirate", "Brute", "Desert Bandit", "Desert Officer", "Snow Bandit", "Snowman", "Chief Petty Officer", "Sky Bandit", "Dark Master", "Prisoner", "Dangerous Prisoner", "Toga Warrior", "Gladiator", "Military Soldier", "Military Spy"},
+            Default = "Bandit",
             Multi = false, 
             Icon = "list",
             Callback = function(v)
                 print(v)
             end
-            })
+        })
+    
+        T9ou:Dropdown(Tab, {
+            Name = "Select Weapon",
+            Flag = "TargetPart",
+            Options = {"Fist", "Sword", "Gun", "Fruit"},
+            Default = "Head",
+            Multi = false,
+            Icon = "list",
+            Callback = function(v)
+                print(v)
+            end
+        })
 
     local QuestGroup = T9ou:GroupBox(Farm, {
     Name = "Auto Farm",
