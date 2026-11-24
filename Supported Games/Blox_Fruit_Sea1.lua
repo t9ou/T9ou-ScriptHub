@@ -23,25 +23,49 @@ local Farm = T9ou:Tab("Farm", "zap")
     Side = "Left" 
     })
 
+        T9ou:Toggle(AutoGroup, {
+            Name = "Auto Farm",
+            Default = false,
+            Callback = function(v) end
+        })
+    
+        T9ou:Dropdown(Tab, {
+            Name = "Target Part",
+            Options = {"Head", "Torso", "HumanoidRootPart"},
+            Default = "Head",
+            Multi = false, 
+            Icon = "list",
+            Callback = function(v)
+                print(v)
+            end
+            })
+
+    local QuestGroup = T9ou:GroupBox(Farm, {
+    Name = "Auto Farm",
+    Icon = "zap",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
     local MasteryGroup = T9ou:GroupBox(Farm, {
     Name = "Mastery Farm",
     Icon = "target",
     DefaultOpen = true,
-    Side = "Right" 
+    Side = "Left" 
     })
 
     local BossGroup = T9ou:GroupBox(Farm, {
     Name = "Boss Farm",
     Icon = "skull",
     DefaultOpen = true,
-    Side = "Left" 
+    Side = "Right" 
     })
 
     local MoneyGroup = T9ou:GroupBox(Farm, {
     Name = "Money Farm",
     Icon = "coins",
     DefaultOpen = true,
-    Side = "Right" 
+    Side = "Full" 
     })
 
 
