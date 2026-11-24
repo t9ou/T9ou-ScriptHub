@@ -34,6 +34,13 @@ local Aimbot = Window:AddTab({
             Default = "F",
             Mode = "Toggle",
         })
+    
+        local Dropdown = AimbotSetting:AddDropdown("MyDropdown", {
+            Text = "Target Part:",
+            Values = { "Head", "Torso", "HumanoidRootPart"},
+            Default = 1,
+            Multi = false,
+        })
 
     local AimbotFOV = Aimbot:AddGroupbox({
         Side = "Right",
