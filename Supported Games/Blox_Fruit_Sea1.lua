@@ -33,7 +33,7 @@ local SilentAim = Window:AddTab({
 
 end
 --================================
---Weapin
+--Weapon
 --================================
 do
 local Weapon = Window:AddTab({
