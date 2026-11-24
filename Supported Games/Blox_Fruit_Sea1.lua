@@ -41,6 +41,14 @@ local Aimbot = Window:AddTab({
             Default = 1,
             Multi = false,
         })
+    
+        local AimbotSmoothing = AimbotSetting:AddSlider("Sensitivity", {
+            Text = "Aimbot Smoothing",
+            Default = 1,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+        })
 
     local AimbotFOV = Aimbot:AddGroupbox({
         Side = "Right",
