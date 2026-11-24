@@ -3,6 +3,6 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/deivi
 local Window = Library:CreateWindow({
     Title = "T9ou Hub",
     Footer = "Blox Fruit",
-    Icon = 14747731068,
+    Icon = 588465614,
     NotifySide = "Right",
 })
