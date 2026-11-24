@@ -1,3 +1,4 @@
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/Library.lua"))()
 
 local Window = Library:CreateWindow({
@@ -42,7 +43,7 @@ local Aimbot = Window:AddTab({
             Multi = false,
         })
     
-        local AimbotSmoothing = AimbotSetting:AddSlider("Sensitivity", {
+        local AimbotSmoothing = AimbotSetting:AddSlider("AimbotSmoothing", {
             Text = "Aimbot Smoothing",
             Default = 1,
             Min = 0,
@@ -50,7 +51,7 @@ local Aimbot = Window:AddTab({
             Rounding = 0,
         })
     
-        local AimbotPrediction = AimbotSetting:AddSlider("Sensitivity", {
+        local AimbotPrediction = AimbotSetting:AddSlider("AimbotPrediction", {
             Text = "Aimbot Prediction",
             Default = 1,
             Min = 0,
@@ -83,7 +84,7 @@ local Aimbot = Window:AddTab({
             Default = false,
         })
     
-        local FOVSize = AimbotFOV:AddSlider("Sensitivity", {
+        local FOVSize = AimbotFOV:AddSlider("FOVSize", {
             Text = "FOV Size",
             Default = 1,
             Min = 0,
@@ -91,18 +92,18 @@ local Aimbot = Window:AddTab({
             Rounding = 0,
         })
     
-        local FOVColorPicker = ShowFOV:AddColorPicker("ColorPicker1", {
+        local FOVColorPicker = ShowFOV:AddColorPicker("FOVColorPicker", {
             Default = Color3.new(1, 0, 0),
-            Title = "DOV Color",
+            Title = "FOV Color",
             Resizable = true,
         })
     
-        local FilledFOV = AimbotFOV:AddToggle("ShowFOV", {
+        local FilledFOV = AimbotFOV:AddToggle("FilledFOV", {
             Text = "Filled FOV",
             Default = false,
         })
     
-        local FOVTransparency = AimbotFOV:AddSlider("Sensitivity", {
+        local FOVTransparency = AimbotFOV:AddSlider("FOVTransparency", {
             Text = "FOV Transparency",
             Default = 1,
             Min = 0,
