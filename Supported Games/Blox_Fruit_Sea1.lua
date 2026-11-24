@@ -46,6 +46,26 @@ local Farm = T9ou:Tab("Farm", "zap")
 
 
 local Combat = T9ou:Tab("Combat", "swords")
+    local AimGroup = T9ou:GroupBox(Combat, {
+    Name = "Auto Aim",
+    Icon = "crosshair",
+    DefaultOpen = true,
+    Side = "Left" 
+    })
+
+    local FovGroup = T9ou:GroupBox(Combat, {
+    Name = "FOV Settings",
+    Icon = "scan",
+    DefaultOpen = true,
+    Side = "Right" 
+    })
+
+    local HitboxGroup = T9ou:GroupBox(Combat, {
+    Name = "Hitbox",
+    Icon = "maximize",
+    DefaultOpen = true,
+    Side = "Full" 
+    })
 
 local World = T9ou:Tab("World", "earth")
 
