@@ -20,7 +20,7 @@ T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 -- Function
 --=========================================
 local items = {}
-local blacklist = {"Tool"} -- ide írd be amit nem akarsz
+local blacklist = {"Tool"}
 
 for _, v in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     if v:IsA("Tool") and not table.find(blacklist, v.Name) then
