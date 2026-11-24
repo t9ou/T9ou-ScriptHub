@@ -18,28 +18,28 @@ T9ou:Notify("Loaded", "Blox Fruit🌊 script loaded!")
 local Farm = T9ou:Tab("Farm", "zap")
     local AutoGroup = T9ou:GroupBox(Farm, {
     Name = "Auto Farm",
-    Icon = "folder",
+    Icon = "zap",
     DefaultOpen = true,
     Side = "Left" 
     })
 
     local MasteryGroup = T9ou:GroupBox(Farm, {
     Name = "Mastery Farm",
-    Icon = "folder",
+    Icon = "target",
     DefaultOpen = true,
     Side = "Right" 
     })
 
     local BossGroup = T9ou:GroupBox(Farm, {
     Name = "Boss Farm",
-    Icon = "folder",
+    Icon = "skull",
     DefaultOpen = true,
     Side = "Left" 
     })
 
     local MoneyGroup = T9ou:GroupBox(Farm, {
     Name = "Money Farm",
-    Icon = "folder",
+    Icon = "coins",
     DefaultOpen = true,
     Side = "Right" 
     })
