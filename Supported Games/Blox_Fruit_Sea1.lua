@@ -67,7 +67,7 @@ local Farm = T9ou:Tab("Farm", "zap")
         })
     
         T9ou:Button(Player, {
-            Name = "Server Hop",
+            Name = "Refresh Weapon",
             Icon = "refresh-cw",
             Callback = function() end
         })
