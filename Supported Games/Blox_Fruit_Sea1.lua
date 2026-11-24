@@ -69,7 +69,27 @@ local Farm = T9ou:Tab("Farm", "zap")
         T9ou:Button(Player, {
             Name = "Refresh Weapon",
             Icon = "refresh-cw",
-            Callback = function() end
+            Callback = function() 
+                items = {}
+                local lp = game.Players.LocalPlayer
+                for _, v in ipairs(lp.Backpack:GetChildren()) do
+                    if v:IsA("Tool") and not table.find(blacklist, v.Name) then
+                        table.insert(items, v.Name)
+                    end
+    end
+    if lp.Character then
+        for _, v in ipairs(lp.Character:GetChildren()) do
+            if v:IsA("Tool") and not table.find(blacklist, v.Name) then
+                table.insert(items, v.Name)
+            end
+        end
+    end
+    if T9ou.Elements["Inventory"] then
+        T9ou.Elements["Inventory"](items[1] or "None")
+    end
+    T9ou:Notify("Weapon", "Refreshed!")
+
+            end
         })
 
     local QuestGroup = T9ou:GroupBox(Farm, {
