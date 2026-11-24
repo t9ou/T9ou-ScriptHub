@@ -25,7 +25,7 @@ local Player = T9ou:Tab("Player", "user-round")
 
 local Fruits = T9ou:Tab("Fruits", "apple")
 
-local Visuals = T9ou:Tab("Visual", "eye")
+local Visuals = T9ou:Tab("Visuals", "eye")
 
 local Misc = T9ou:Tab("Misc", "grid-3x3")
 
