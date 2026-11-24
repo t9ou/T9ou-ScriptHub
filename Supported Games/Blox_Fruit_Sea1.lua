@@ -24,6 +24,7 @@ for _, v in ipairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
     if v:IsA("Tool") then
         table.insert(items, v.Name)
     end
+end
 
 
 --=========================================
@@ -43,7 +44,7 @@ local Farm = T9ou:Tab("Farm", "zap")
             Callback = function(v) end
         })
     
-        T9ou:Dropdown(Tab, {
+        T9ou:Dropdown(AutoGroup, {
             Name = "Select Mob",
             Options = {"Bandit", "Monkey", "Gorilla", "Pirate", "Brute", "Desert Bandit", "Desert Officer", "Snow Bandit", "Snowman", "Chief Petty Officer", "Sky Bandit", "Dark Master", "Prisoner", "Dangerous Prisoner", "Toga Warrior", "Gladiator", "Military Soldier", "Military Spy"},
             Default = "Bandit",
@@ -54,13 +55,10 @@ local Farm = T9ou:Tab("Farm", "zap")
             end
         })
     
-        T9ou:Dropdown(Tab, {
-            Name = "Select Weapon",
-            Flag = "TargetPart",
-            Options = items, 
-            Default = items[1] or "none",
-            Multi = false,
-            Icon = "list",
+        T9ou:Dropdown(AutoGroup, {
+            Name = "Inventory",
+            Options = items,
+            Default = items[1] or "None",
             Callback = function(v)
                 print(v)
             end
