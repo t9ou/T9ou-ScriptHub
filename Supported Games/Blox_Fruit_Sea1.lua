@@ -29,7 +29,7 @@ local Aimbot = Window:AddTab({
             Default = false,
         })
     
-        local AimbotKeybind = EnableAimbot:AddKeyPicker("MyKeybind", {
+        local AimbotKeybind = EnableAimbot:AddKeyPicker("EnableAimbot", {
             Text = "Aimbot Keybind",
             Default = "F",
             Mode = "Toggle",
