@@ -76,19 +76,18 @@ local Farm = T9ou:Tab("Farm", "zap")
                     if v:IsA("Tool") and not table.find(blacklist, v.Name) then
                         table.insert(items, v.Name)
                     end
-    end
-    if lp.Character then
-        for _, v in ipairs(lp.Character:GetChildren()) do
-            if v:IsA("Tool") and not table.find(blacklist, v.Name) then
-                table.insert(items, v.Name)
-            end
-        end
-    end
-    if T9ou.Elements["Inventory"] then
-        T9ou.Elements["Inventory"](items[1] or "None")
-    end
-    T9ou:Notify("Weapon", "Refreshed!")
-
+                end
+                if lp.Character then
+                    for _, v in ipairs(lp.Character:GetChildren()) do
+                        if v:IsA("Tool") and not table.find(blacklist, v.Name) then
+                            table.insert(items, v.Name)
+                        end
+                    end
+                end
+                if T9ou.Elements["Inventory"] then
+                    T9ou.Elements["Inventory"](items[1] or "None")
+                end
+                T9ou:Notify("Weapon", "Refreshed!")
             end
         })
 
