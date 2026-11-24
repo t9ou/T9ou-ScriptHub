@@ -24,7 +24,16 @@ local Aimbot = Window:AddTab({
         Name = "Aimbot Setting",
     })
 
-
+        local EnableAimbot = AimbotSetting:AddToggle("Enable Aimbot", {
+            Text = "Enable Aimbot",
+            Default = false,
+        })
+    
+        local AimbotKeybind = EnableAimbot:AddKeyPicker("MyKeybind", {
+            Text = "Aimbot Keybind",
+            Default = "F",
+            Mode = "Toggle",
+        })
 
     local AimbotFOV = Aimbot:AddGroupbox({
         Side = "Right",
