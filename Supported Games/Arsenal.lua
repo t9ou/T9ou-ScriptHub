@@ -134,6 +134,18 @@ local SilentAim = Window:AddTab({
         Name = "Silent Aim Setting",
     })
 
+        local EnableSilentAim = SilentAimSettings:AddToggle("EnableSilentAim", {
+            Text = "Enable Silent Aim",
+            Default = false,
+        })
+    
+        local TargetPart = SilentAimSettings:AddDropdown("TargetPart", {
+            Text = "Target Part:",
+            Values = { "Head", "Torso", "HumanoidRootPart",},
+            Default = 1,
+            Multi = false,
+        })
+
     local SilentAimFOV = SilentAim:AddGroupbox({
         Side = "Right",
         Name = "Silent Aim FOV",
