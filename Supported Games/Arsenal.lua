@@ -43,6 +43,13 @@ local Aimbot = Window:AddTab({
             Multi = false,
         })
     
+        local AimMethod = AimbotSetting:AddDropdown("AimMethod", {
+            Text = "Aim Method:",
+            Values = { "Camera", "Cursor"},
+            Default = 1,
+            Multi = false,
+        })
+    
         local AimbotSmoothing = AimbotSetting:AddSlider("AimbotSmoothing", {
             Text = "Aimbot Smoothing",
             Default = 1,
