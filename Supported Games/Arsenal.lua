@@ -228,6 +228,12 @@ local SilentAim = Window:AddTab({
                 print(Value)
             end
         })
+        
+        local SilentAimKeybind = EnableSilentAim:AddKeyPicker("FOVKeybind", {
+            Text = "Silent Aim Keybind",
+            Default = "F",
+            Mode = "Toggle",
+        })    
 
     local SilentAimFOV = SilentAim:AddGroupbox({
         Side = "Right",
@@ -261,8 +267,6 @@ local SilentAim = Window:AddTab({
                 print(Value)
             end
         })
-    
-        
 end
 --================================
 --Weapon
