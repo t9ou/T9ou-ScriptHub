@@ -52,7 +52,7 @@ local Aimbot = Window:AddTab({
     
         local AimbotSmoothing = AimbotSetting:AddSlider("AimbotSmoothing", {
             Text = "Aimbot Smoothing",
-            Default = 1,
+            Default = 0,
             Min = 0,
             Max = 100,
             Rounding = 0,
@@ -60,7 +60,7 @@ local Aimbot = Window:AddTab({
     
         local AimbotPrediction = AimbotSetting:AddSlider("AimbotPrediction", {
             Text = "Aimbot Prediction",
-            Default = 1,
+            Default = 0,
             Min = 0,
             Max = 100,
             Rounding = 0,
@@ -93,7 +93,7 @@ local Aimbot = Window:AddTab({
     
         local FOVSize = AimbotFOV:AddSlider("FOVSize", {
             Text = "FOV Size",
-            Default = 1,
+            Default = 0,
             Min = 0,
             Max = 100,
             Rounding = 0,
@@ -112,7 +112,7 @@ local Aimbot = Window:AddTab({
     
         local FOVTransparency = AimbotFOV:AddSlider("FOVTransparency", {
             Text = "FOV Transparency",
-            Default = 1,
+            Default = 0,
             Min = 0,
             Max = 100,
             Rounding = 0,
