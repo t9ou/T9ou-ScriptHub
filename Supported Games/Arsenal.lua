@@ -28,12 +28,18 @@ local Aimbot = Window:AddTab({
         local EnableAimbot = AimbotSetting:AddToggle("Enable Aimbot", {
             Text = "Enable Aimbot",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local AimbotKeybind = EnableAimbot:AddKeyPicker("Enable Aimbot", {
             Text = "Aimbot Keybind",
             Default = "F",
             Mode = "Toggle",
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local TargetPart = AimbotSetting:AddDropdown("MyDropdown", {
@@ -41,6 +47,9 @@ local Aimbot = Window:AddTab({
             Values = { "Head", "Torso", "HumanoidRootPart"},
             Default = 1,
             Multi = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local AimMethod = AimbotSetting:AddDropdown("AimMethod", {
@@ -48,6 +57,9 @@ local Aimbot = Window:AddTab({
             Values = { "Camera", "Cursor"},
             Default = 1,
             Multi = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local AimbotSmoothing = AimbotSetting:AddSlider("AimbotSmoothing", {
@@ -56,6 +68,9 @@ local Aimbot = Window:AddTab({
             Min = 0,
             Max = 100,
             Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local AimbotPrediction = AimbotSetting:AddSlider("AimbotPrediction", {
@@ -64,21 +79,33 @@ local Aimbot = Window:AddTab({
             Min = 0,
             Max = 100,
             Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local TeamCheck = AimbotSetting:AddToggle("TeamCheck", {
             Text = "Team Check",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local WallCheck = AimbotSetting:AddToggle("WallCheck", {
             Text = "Wall Check",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local VisibleCheck = AimbotSetting:AddToggle("VisibleCheck", {
             Text = "Visible Check",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
 
     local AimbotFOV = Aimbot:AddGroupbox({
@@ -88,7 +115,10 @@ local Aimbot = Window:AddTab({
 
         local ShowFOV = AimbotFOV:AddToggle("ShowFOV", {
             Text = "Show FOV",
-            Default = false,
+            Default = false, 
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local FOVSize = AimbotFOV:AddSlider("FOVSize", {
@@ -97,17 +127,26 @@ local Aimbot = Window:AddTab({
             Min = 0,
             Max = 100,
             Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local FOVColorPicker = ShowFOV:AddColorPicker("FOVColorPicker", {
             Default = Color3.new(1, 0, 0),
             Title = "FOV Color",
             Resizable = true,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local FilledFOV = AimbotFOV:AddToggle("FilledFOV", {
             Text = "Filled FOV",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
         local FOVTransparency = AimbotFOV:AddSlider("FOVTransparency", {
@@ -116,6 +155,9 @@ local Aimbot = Window:AddTab({
             Min = 0,
             Max = 100,
             Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
         })
 end
 --================================
@@ -137,19 +179,90 @@ local SilentAim = Window:AddTab({
         local EnableSilentAim = SilentAimSettings:AddToggle("EnableSilentAim", {
             Text = "Enable Silent Aim",
             Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
     
-        local TargetPart = SilentAimSettings:AddDropdown("TargetPart", {
+        local TargetPartSilentAim = SilentAimSettings:AddDropdown("TargetPart", {
             Text = "Target Part:",
             Values = { "Head", "Torso", "HumanoidRootPart",},
             Default = 1,
             Multi = false,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local HitChance = SilentAimSettings:AddSlider("HitChance", {
+            Text = "Hit Chance",
+            Default = 0,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local WallCheck = SilentAimSettings:AddToggle("WallCheck", {
+            Text = "Wall Check",
+            Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local TeamCheck = SilentAimSettings:AddToggle("TeamCheck", {
+            Text = "Team Check",
+            Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local VisibleCheck = SilentAimSettings:AddToggle("VisibleCheck", {
+            Text = "Visible Check",
+            Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
         })
 
     local SilentAimFOV = SilentAim:AddGroupbox({
         Side = "Right",
         Name = "Silent Aim FOV",
     })
+
+        local ShowFOV = SilentAimFOV:AddToggle("ShowFOV", {
+            Text = "Show FOV",
+            Default = false,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local FOVSize = SilentAimFOV:AddSlider("FOVSize", {
+            Text = "FOV Size",
+            Default = 0,
+            Min = 0,
+            Max = 100,
+            Rounding = 0,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        local FOVColor = ShowFOV:AddColorPicker("FOVColor", {
+            Default = Color3.new(1, 0, 0),
+            Title = "FOV Color",
+            Resizable = true,
+            Callback = function(Value)
+                print(Value)
+            end
+        })
+    
+        
 end
 --================================
 --Weapon
