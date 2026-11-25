@@ -35,7 +35,7 @@ local Aimbot = Window:AddTab({
     
         local AimbotKeybind = EnableAimbot:AddKeyPicker("Enable Aimbot", {
             Text = "Aimbot Keybind",
-            Default = "F",
+            Default = "None",
             Mode = "Toggle",
             Callback = function(Value)
                 print(Value)
@@ -231,7 +231,7 @@ local SilentAim = Window:AddTab({
         
         local SilentAimKeybind = EnableSilentAim:AddKeyPicker("FOVKeybind", {
             Text = "Silent Aim Keybind",
-            Default = "F",
+            Default = "None",
             Mode = "Toggle",
         })    
 
