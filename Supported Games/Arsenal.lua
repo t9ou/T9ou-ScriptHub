@@ -10,7 +10,9 @@ local Window = Library:Window({
         Speed = 1
     }
 })
-
+--=================================
+-- Aimbot
+--=================================
 do
 local AimbotKeyMode = "Hold"
 local targetpart = {"Head", "Torso", "HumanoidRootPart"}
@@ -60,8 +62,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         end
     })
 
-    local AimbotSmoothing = AimbotSection:Slider({
-        Name = "Aimbot Smoothing",
+    local AimbotSmoothness = AimbotSection:Slider({
+        Name = "Aimbot Smoothness",
         Flag = "AimbotSmoothing",
         Min = 0,
         Default = 0,
@@ -69,7 +71,7 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Suffix = "%",
         Decimals = 1,
         Callback = function(v) 
-            print("Aimbot Smoothing:".. tostring(v))
+            print("Aimbot Smoothness:".. tostring(v))
         end
     })
 
@@ -103,6 +105,16 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Risky = true,
         Callback = function(v) 
             print("Visible Check:".. tostring(v))
+        end
+    })
+
+    local IgnoreDead = AimbotSection:Toggle({
+        Name = "Ignore Dead",
+        Default = false,
+        Flag = "IgnoreDead",
+        Risky = true,
+        Callback = function(v) 
+            print("Ignore Dead:".. tostring(v))
         end
     })
 end
