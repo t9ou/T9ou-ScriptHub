@@ -139,8 +139,7 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Flag = "ShowFOV",
         Risky = false,
         Callback = function(v)
-            print("Show FOV:" .. tostring(v))
-        end
+            print("Show FOV:" .. tostring(v))        end
     })
 
     local FOVColor = ShowFOV:Colorpicker({
