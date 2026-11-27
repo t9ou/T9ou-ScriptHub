@@ -1,3 +1,4 @@
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/i77lhm/Libraries/refs/heads/main/Utopia/Library.lua"))()
 
 local Window = Library:Window({
@@ -10,24 +11,28 @@ local Window = Library:Window({
         Speed = 1
     }
 })
+
 --=================================
 -- Aimbot
 --=================================
 do
+--=================================
+-- Aimbot Section
+--=================================
 local AimbotKeyMode = "Hold"
 local targetpart = {"Head", "Torso", "HumanoidRootPart"}
 
     local AimbotTab = Window:Page({Name = "Aimbot", Columns = 2})
-    
+
     local AimbotSection = AimbotTab:Section({Name = "Aimbot", Side = 1})
-    
+
     local AimbotSwitch = AimbotSection:Toggle({
         Name = "Enable Aimbot",
         Default = false,
         Flag = "Toggle",
         Risky = true,
         Callback = function(v)
-            print("Aimbot:".. tostring(v))
+            print("Aimbot:" .. tostring(v))
         end
     })
 
@@ -45,8 +50,9 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Items = {"Hold", "Toggle"},
         Multi = false,
         Default = "Hold",
-        Callback = function(v) 
+        Callback = function(v)
             AimbotKeyMode = v
+            AimbotKeyBind:Set(v)
             print("Keybind Mode: " .. v)
         end
     })
@@ -56,8 +62,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Flag = "TargetPart",
         Items = targetpart,
         Multi = false,
-        Default = targetpart,
-        Callback = function(v) 
+        Default = "Head",
+        Callback = function(v)
             print("Target Part:" .. tostring(v))
         end
     })
@@ -70,8 +76,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Max = 100,
         Suffix = "%",
         Decimals = 1,
-        Callback = function(v) 
-            print("Aimbot Smoothness:".. tostring(v))
+        Callback = function(v)
+            print("Aimbot Smoothness:" .. tostring(v))
         end
     })
 
@@ -83,8 +89,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Max = 100,
         Suffix = "%",
         Decimals = 1,
-        Callback = function(v) 
-            print("Aimbot Prediction:".. tostring(v))
+        Callback = function(v)
+            print("Aimbot Prediction:" .. tostring(v))
         end
     })
 
@@ -93,8 +99,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Default = false,
         Flag = "TeamCheck",
         Risky = true,
-        Callback = function(v) 
-            print("Team Check:".. tostring(v))
+        Callback = function(v)
+            print("Team Check:" .. tostring(v))
         end
     })
 
@@ -103,8 +109,8 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Default = false,
         Flag = "VisibleCheck",
         Risky = true,
-        Callback = function(v) 
-            print("Visible Check:".. tostring(v))
+        Callback = function(v)
+            print("Visible Check:" .. tostring(v))
         end
     })
 
@@ -113,8 +119,37 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         Default = false,
         Flag = "IgnoreDead",
         Risky = true,
-        Callback = function(v) 
-            print("Ignore Dead:".. tostring(v))
+        Callback = function(v)
+            print("Ignore Dead:" .. tostring(v))
         end
     })
+
+--=================================
+-- Aimbot FOV Section
+--=================================
+
+    local AimbotFOVSection = AimbotTab:Section({
+        Name = "Aimbot FOV",
+        Side = 2
+    })
+
+    local ShowFOV = AimbotFOVSection:Toggle({
+        Name = "Show FOV",
+        Default = false,
+        Flag = "ShowFOV",
+        Risky = false,
+        Callback = function(v)
+            print("Show FOV:" .. tostring(v))
+        end
+    })
+
+    ShowFOV:Colorpicker({
+        Name = "FOV Color",
+        Flag = "FOVColor",
+        Default = Color3.fromRGB(255, 0, 0),
+        Callback = function(Value, Alpha)
+            print("FOV Color:", Value, Alpha)
+        end
+    })
+
 end
