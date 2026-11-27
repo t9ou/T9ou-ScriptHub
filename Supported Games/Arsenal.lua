@@ -1,306 +1,108 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/i77lhm/Libraries/refs/heads/main/Utopia/Library.lua"))()
 
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/deividcomsono/Obsidian/refs/heads/main/Library.lua"))()
-
-local Window = Library:CreateWindow({
-    Title = "T9ou Hub",
-    Footer = "Araenal",
-    Icon = "eclipse",
-    NotifySide = "Right",
+local Window = Library:Window({
+    Name = "T 9 O U | Arsenal",
+    GradientTitle = {
+        Enabled = true,
+        Start = Color3.fromRGB(255, 255, 255),
+        Middle = Color3.fromRGB(0, 251, 255),
+        End = Color3.fromRGB(50, 135, 168),
+        Speed = 1
+    }
 })
 
-Library:Notify("Script Loaded: Arsenal", 3)
---================================
--- Aimbot
---================================
 do
-local Aimbot = Window:AddTab({
-    Name = "Aimbot",
-    Description = "Targeting & Aim Assistance",
-    Icon = "crosshair",
-    Tooltip = false,
-})
+local AimbotKeyMode = "Hold"
+local targetpart = {"Head", "Torso", "HumanoidRootPart"}
 
-    local AimbotSetting = Aimbot:AddGroupbox({
-        Side = "Left",
-        Name = "Aimbot Setting",
+    local AimbotTab = Window:Page({Name = "Aimbot", Columns = 2})
+    
+    local AimbotSection = AimbotTab:Section({Name = "Aimbot", Side = 1})
+    
+    local AimbotSwitch = AimbotSection:Toggle({
+        Name = "Enable Aimbot",
+        Default = false,
+        Flag = "Toggle",
+        Risky = true,
+        Callback = function(v)
+            print("Aimbot:".. tostring(v))
+        end
     })
 
-        local EnableAimbot = AimbotSetting:AddToggle("Enable Aimbot", {
-            Text = "Enable Aimbot",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local AimbotKeybind = EnableAimbot:AddKeyPicker("Enable Aimbot", {
-            Text = "Aimbot Keybind",
-            Default = "None",
-            Mode = "Toggle",
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local TargetPart = AimbotSetting:AddDropdown("MyDropdown", {
-            Text = "Target Part:",
-            Values = { "Head", "Torso", "HumanoidRootPart"},
-            Default = 1,
-            Multi = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local AimMethod = AimbotSetting:AddDropdown("AimMethod", {
-            Text = "Aim Method:",
-            Values = { "Camera", "Cursor"},
-            Default = 1,
-            Multi = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local AimbotSmoothing = AimbotSetting:AddSlider("AimbotSmoothing", {
-            Text = "Aimbot Smoothing",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local AimbotPrediction = AimbotSetting:AddSlider("AimbotPrediction", {
-            Text = "Aimbot Prediction",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local TeamCheck = AimbotSetting:AddToggle("TeamCheck", {
-            Text = "Team Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local WallCheck = AimbotSetting:AddToggle("WallCheck", {
-            Text = "Wall Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local VisibleCheck = AimbotSetting:AddToggle("VisibleCheck", {
-            Text = "Visible Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-
-    local AimbotFOV = Aimbot:AddGroupbox({
-        Side = "Right",
-        Name = "Aimbot FOV",
+    local AimbotKeyBind = AimbotSection:Label("Aimbot Key", "Left"):Keybind({
+        Name = "Aimbot Key",
+        Flag = "AimbotKey",
+        Default = Enum.KeyCode.E,
+        Mode = AimbotKeyMode,
+        Callback = function(v) end
     })
 
-        local ShowFOV = AimbotFOV:AddToggle("ShowFOV", {
-            Text = "Show FOV",
-            Default = false, 
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FOVSize = AimbotFOV:AddSlider("FOVSize", {
-            Text = "FOV Size",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FOVColorPicker = ShowFOV:AddColorPicker("FOVColorPicker", {
-            Default = Color3.new(1, 0, 0),
-            Title = "FOV Color",
-            Resizable = true,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FilledFOV = AimbotFOV:AddToggle("FilledFOV", {
-            Text = "Filled FOV",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FOVTransparency = AimbotFOV:AddSlider("FOVTransparency", {
-            Text = "FOV Transparency",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-end
---================================
---Silent Aim
---================================
-do
-local SilentAim = Window:AddTab({
-    Name = "Silent Aim",
-    Description = "Undetected Targeting Features",
-    Icon = "scan",
-    Tooltip = false,
-})
-
-    local SilentAimSettings = SilentAim:AddGroupbox({
-        Side = "Left",
-        Name = "Silent Aim Setting",
+    local KeybindMode = AimbotSection:Dropdown({
+        Name = "Aimbot Key Mode",
+        Flag = "AimbotKeyMode",
+        Items = {"Hold", "Toggle"},
+        Multi = false,
+        Default = "Hold",
+        Callback = function(v) 
+            AimbotKeyMode = v
+            print("Keybind Mode: " .. v)
+        end
     })
 
-        local EnableSilentAim = SilentAimSettings:AddToggle("EnableSilentAim", {
-            Text = "Enable Silent Aim",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local TargetPartSilentAim = SilentAimSettings:AddDropdown("TargetPart", {
-            Text = "Target Part:",
-            Values = { "Head", "Torso", "HumanoidRootPart",},
-            Default = 1,
-            Multi = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local HitChance = SilentAimSettings:AddSlider("HitChance", {
-            Text = "Hit Chance",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local WallCheck = SilentAimSettings:AddToggle("WallCheck", {
-            Text = "Wall Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local TeamCheck = SilentAimSettings:AddToggle("TeamCheck", {
-            Text = "Team Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local VisibleCheck = SilentAimSettings:AddToggle("VisibleCheck", {
-            Text = "Visible Check",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-        
-        local SilentAimKeybind = EnableSilentAim:AddKeyPicker("FOVKeybind", {
-            Text = "Silent Aim Keybind",
-            Default = "None",
-            Mode = "Toggle",
-        })    
-
-    local SilentAimFOV = SilentAim:AddGroupbox({
-        Side = "Right",
-        Name = "Silent Aim FOV",
+    local TargetPart = AimbotSection:Dropdown({
+        Name = "Target Part:",
+        Flag = "TargetPart",
+        Items = targetpart,
+        Multi = false,
+        Default = targetpart,
+        Callback = function(v) 
+            print("Target Part:" .. tostring(v))
+        end
     })
 
-        local ShowFOV = SilentAimFOV:AddToggle("ShowFOV", {
-            Text = "Show FOV",
-            Default = false,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FOVSize = SilentAimFOV:AddSlider("FOVSize", {
-            Text = "FOV Size",
-            Default = 0,
-            Min = 0,
-            Max = 100,
-            Rounding = 0,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-    
-        local FOVColor = ShowFOV:AddColorPicker("FOVColor", {
-            Default = Color3.new(1, 0, 0),
-            Title = "FOV Color",
-            Resizable = true,
-            Callback = function(Value)
-                print(Value)
-            end
-        })
-end
---================================
---Weapon
---================================
-do
-local Weapon = Window:AddTab({
-    Name = "Weapon",
-    Description = "Weapon Features",
-    Icon = "target",
-    Tooltip = false,
-})
-
-end
---================================
--- Visual
---================================
-do
-local Visual = Window:AddTab({
-    Name = "Visual",
-    Description = "ESP & Visual Enhancements",
-    Icon = "eye",
-    Tooltip = false,
-})
-
-end
---================================
--- Player
---================================
-do
-    local LPlayer = Window:AddTab({
-        Name = "Player",
-        Description = "Player Movement & Utilities",
-        Icon = "user",
-        Tooltip = false,
+    local AimbotSmoothing = AimbotSection:Slider({
+        Name = "Aimbot Smoothing",
+        Flag = "AimbotSmoothing",
+        Min = 0,
+        Default = 0,
+        Max = 100,
+        Suffix = "%",
+        Decimals = 1,
+        Callback = function(v) 
+            print("Aimbot Smoothing:".. tostring(v))
+        end
     })
 
+    local AimbotPrediction = AimbotSection:Slider({
+        Name = "Aimbot Prediction",
+        Flag = "AimbotPrediction",
+        Min = 0,
+        Default = 0,
+        Max = 100,
+        Suffix = "%",
+        Decimals = 1,
+        Callback = function(v) 
+            print("Aimbot Prediction:".. tostring(v))
+        end
+    })
+
+    local TeamCheck = AimbotSection:Toggle({
+        Name = "Team Check",
+        Default = false,
+        Flag = "TeamCheck",
+        Risky = true,
+        Callback = function(v) 
+            print("Team Check:".. tostring(v))
+        end
+    })
+
+    local VisibleCheck = AimbotSection:Toggle({
+        Name = "Visible Check",
+        Default = false,
+        Flag = "VisibleCheck",
+        Risky = true,
+        Callback = function(v) 
+            print("Visible Check:".. tostring(v))
+        end
+    })
 end
