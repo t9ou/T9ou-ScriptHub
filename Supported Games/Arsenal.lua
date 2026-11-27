@@ -143,7 +143,7 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         end
     })
 
-    ShowFOV:Colorpicker({
+    local FOVColor = ShowFOV:Colorpicker({
         Name = "FOV Color",
         Flag = "FOVColor",
         Default = Color3.fromRGB(255, 0, 0),
@@ -152,4 +152,16 @@ local targetpart = {"Head", "Torso", "HumanoidRootPart"}
         end
     })
 
+    local FOVSize = AimbotFOVSection:Slider({
+        Name = "FOV Size",
+        Flag = "FOVSize",
+        Min = 0,
+        Default = 0,
+        Max = 100,
+        Suffix = "%",
+        Decimals = 1,
+        Callback = function(v) 
+            print(v)
+        end
+    })
 end
